@@ -88,10 +88,9 @@ export default function ActiveNavigation() {
     </nav>
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
   <div className="text-4xl font-semibold text-gray-800">
-    Home Page
+    service Page
   </div>
 </div>
-
     </>
   );
 }
