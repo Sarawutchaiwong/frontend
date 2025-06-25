@@ -24,10 +24,10 @@ export default function Navigation() {
             Dropdown
           </a>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li><a className="dropdown-divider" /></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
+            <li><Link className="dropdown-item" href="#">Action</Link></li>
+            <li><Link className="dropdown-item" href="#">Another action</Link></li>
+            <li><Link className="dropdown-divider" /></li>
+            <li><Link className="dropdown-item" href="#">Something else here</Link></li>
           </ul>
         </li>
       </ul>
