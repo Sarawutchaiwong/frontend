@@ -26,7 +26,7 @@ export default function Navigation() {
           <ul className="dropdown-menu">
             <li><Link className="dropdown-item" href="#">Action</Link></li>
             <li><Link className="dropdown-item" href="#">Another action</Link></li>
-            <li><Link className="dropdown-divider" /></li>
+            <li><Link className="dropdown-divider" href="#"></Link> /</li>
             <li><Link className="dropdown-item" href="#">Something else here</Link></li>
           </ul>
         </li>
