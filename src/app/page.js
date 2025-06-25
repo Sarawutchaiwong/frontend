@@ -7,7 +7,7 @@ export default function Home() {
   return (
   <>
   <Carousel />
-    <h1 className='mt-150 text-center'>Sarawut Chaiwong 026</h1>
+    <h1 className='mt-150 text-center'>Sarawut chaiwong 026</h1>
   <Footer />
   </>
   );
