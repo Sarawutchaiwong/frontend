@@ -25,8 +25,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <div className="container-fluid pt-3 ">
+          <div className="row">
+            <div className="col-12">
         <Navigation />
+            </div>
+          </div>
         {children}
+        </div>
       </body>
     </html>
   );

@@ -15,13 +15,13 @@ export default function Carousel() {
     <div id="carouselExample" className="carousel slide">
   <div className="carousel-inner">
     <div className="carousel-item active">
-      <Image src="/images/slider1.png" className="d-block w-100" alt="..." width={1920} height={960}/>
+      <Image src="/images/slider1.png" className="d-block w-100 rounded" layout="responsive" alt="..." width={1920} height={960}/>
     </div>
     <div className="carousel-item">
-      <Image src="/images/slider2.png" className="d-block w-100" alt="..." width={1920} height={960}/>
+      <Image src="/images/slider2.png" className="d-block w-100 rounded" layout="responsive" alt="..." width={1920} height={960}/>
     </div>
     <div className="carousel-item">
-      <Image src="/images/slider3.png" className="d-block w-100" alt="..." width={1920} height={960}/>
+      <Image src="/images/slider3.png" className="d-block w-100 rounded" layout="responsive" alt="..." width={1920} height={960}/>
     </div>
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
