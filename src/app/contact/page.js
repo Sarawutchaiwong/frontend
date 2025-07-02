@@ -5,7 +5,7 @@ export default function Contact() {
         <div className="col-lg-8 mx-auto">
           <h1 className="display-4">Contact Us</h1>
           <p className="text-muted">
-            We'd love to hear from you! Please fill out the form below to get in touch.
+            Wed love to hear from you! Please fill out the form below to get in touch.
           </p>
         </div>
       </div>

@@ -48,7 +48,7 @@ export default function Service() {
             <Image className="card-img-top" src="/images/roblox4.png" alt="Crazy Face" width={200} height={200} />
             <div className="card-body d-flex flex-column">
               <h5 className="card-title text-danger">Crazy Face</h5>
-              <p className="card-text">A service for when you're feeling wild.</p>
+              <p className="card-text">A service for when youre feeling wild.</p>
               <Link href="/contact" className="btn btn-danger btn-sm mt-auto">Learn More</Link>
             </div>
           </div>
