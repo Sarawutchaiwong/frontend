@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
       <body>
         <div className="container-fluid pt-3 ">
           <div className="row">
-            <div className="col-12">
+            <div className="col-12 p-2">
         <Navigation />
             </div>
           </div>
