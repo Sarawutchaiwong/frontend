@@ -1,70 +1,73 @@
 'use client';
-import { useEffect } from 'react';
 import Link from 'next/link';
-
+import Image from 'next/image';
 
 export default function Footer() {
-
-  useEffect(() => {
-    import('bootstrap/dist/js/bootstrap.bundle.min.js')
-  }
-, []);
-
-
   return (
-    <footer className="py-4 mt-5 bg-light border-top">
+    <footer className="py-5 mt-5 bg-light shadow-sm" style={{ borderRadius: '1rem' }}>
       <div className="container">
         <div className="row">
-          <div className="col-6 col-md-2 mb-3">
-            <h5>Section</h5>
-            <ul className="nav flex-column">
-              <li className="nav-item mb-2">
-                <Link href="/" className="nav-link p-0 text-body-secondary">
-                  Home
-                </Link>
+          <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <Link href="/" className="d-inline-block mb-3">
+                <Image src="/images/logo.png" alt="Logo" width={150} height={60} />
+            </Link>
+            <p className="text-muted">
+              Discover a world of expressions. Your one-stop destination for unique and fun face assets.
+            </p>
+          </div>
+
+          <div className="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5 className="text-uppercase fw-bold mb-4">Links</h5>
+            <ul className="list-unstyled mb-0">
+              <li className="mb-2">
+                <Link href="/" className="text-muted text-decoration-none">Home</Link>
               </li>
-              
-              <li className="nav-item mb-2">
-                <Link href="/features" className="nav-link p-0 text-body-secondary">
-                  Features
-                </Link>
+              <li className="mb-2">
+                <Link href="/service" className="text-muted text-decoration-none">Service</Link>
               </li>
-              
-              <li className="nav-item mb-2">
-                <Link href="/pricing" className="nav-link p-0 text-body-secondary">
-                  Pricing
-                </Link>
+              <li className="mb-2">
+                <Link href="/about" className="text-muted text-decoration-none">About</Link>
               </li>
-              
-              <li className="nav-item mb-2">
-                <Link href="/faqs" className="nav-link p-0 text-body-secondary">
-                  FAQs
-                </Link>
-              </li>
-              
-              <li className="nav-item mb-2">
-                <Link href="/about" className="nav-link p-0 text-body-secondary">
-                  About
-                </Link>
+              <li className="mb-2">
+                <Link href="/contact" className="text-muted text-decoration-none">Contact</Link>
               </li>
             </ul>
           </div>
-          
-          <div className="col-md-5 offset-md-1 mb-3">
-            <form>
-              <h5>Subscribe to our newsletter</h5>
-              
-              <div className="d-flex flex-column flex-sm-row w-100 gap-2">
-                <label htmlFor="newsletter1" className="visually-hidden">Email address</label>
-                <input id="newsletter1" type="email" className="form-control" placeholder="Email address" />
-                <button className="btn btn-primary" type="button">Subscribe</button>
+
+          <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <h5 className="text-uppercase fw-bold mb-4">Follow Us</h5>
+            <div>
+              <a href="#" className="text-muted me-3 text-decoration-none fs-4">
+                <i className="bi bi-facebook"></i>
+              </a>
+              <a href="#" className="text-muted me-3 text-decoration-none fs-4">
+                <i className="bi bi-twitter"></i>
+              </a>
+              <a href="#" className="text-muted me-3 text-decoration-none fs-4">
+                <i className="bi bi-instagram"></i>
+              </a>
+              <a href="#" className="text-muted text-decoration-none fs-4">
+                <i className="bi bi-linkedin"></i>
+              </a>
+            </div>
+          </div>
+
+          <div className="col-lg-3 col-md-6">
+            <h5 className="text-uppercase fw-bold mb-4">Newsletter</h5>
+            <p className="text-muted">Subscribe to get our latest updates.</p>
+            <form action="#">
+              <div className="input-group">
+                <input type="email" placeholder="Your email" aria-label="Your email" className="form-control" />
+                <button className="btn btn-primary" type="submit">Subscribe</button>
               </div>
             </form>
           </div>
         </div>
-        <p className="text-center text-muted mb-0">© 2025 Company, Inc. All rights reserved.</p>
+
+        <div className="border-top pt-4 mt-5">
+          <p className="text-center text-muted mb-0">© 2025 Company, Inc. All rights reserved.</p>
+        </div>
       </div>
     </footer>
-
   );
 }

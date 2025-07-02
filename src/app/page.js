@@ -10,7 +10,7 @@ export default function Home() {
   <>
   <Carousel />
 
-    <h1 className='mt-150 p-2 text-center'>Sarawut chaiwong 026</h1>
+    <h1 className='mt-150 p-2 text-center'>Category</h1>
 
   <Card />
   <Footer />

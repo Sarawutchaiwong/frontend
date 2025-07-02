@@ -6,17 +6,23 @@ import Image from 'next/image'
 export default function Navigation() {
   return (
     <nav
-      className="navbar navbar-expand-lg shadow-xl"
+      className="navbar navbar-expand-lg navbar-light bg-light shadow-sm border border-gray mb-2"
       style={{
-        background: "linear-gradient(90deg,rgb(0, 115, 182) 0%,rgb(0, 115, 182) 100%)",
         borderRadius: "1rem",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+        width: "100%"
+        
       }}
     >
       <div className="container-fluid">
-        <Link className="navbar-brand d-flex align-items-center text-white fw-bold" href="/" style={{ fontSize: "1.5rem", letterSpacing: "2px" }}>
-          <Image src="/images/logo.png" alt="Logo" width={150} height={60} className="me-2" />
-          
+        <Link className="navbar-brand d-flex align-items-center" href="/">
+          <Image
+            src="/images/logo.png"
+            alt="Logo"
+            width={100}
+            height={80}
+            className="rounded-circle me-2"
+            style={{ objectFit: "contain" }}
+          />
         </Link>
         <button
           className="navbar-toggler"
@@ -32,23 +38,23 @@ export default function Navigation() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link text-white" aria-current="page" href="/">
+              <Link className="nav-link text-dark" aria-current="page" href="/">
                 <i className="bi bi-house-door me-1"></i> Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-white" href="/service">
+              <Link className="nav-link text-dark" href="/service">
                 <i className="bi bi-gear me-1"></i> Service
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-white" href="/contact">
+              <Link className="nav-link text-dark" href="/contact">
                 <i className="bi bi-envelope me-1"></i> Contact
               </Link>
             </li>
             <li className="nav-item dropdown">
               <a
-                className="nav-link dropdown-toggle text-white"
+                className="nav-link dropdown-toggle text-dark"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -71,7 +77,7 @@ export default function Navigation() {
           </ul>
           <form className="d-flex ms-lg-3 mt-3 mt-lg-0" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-none text-dark fw-bold" type="submit">
+            <button className="btn btn-outline-secondary" type="submit">
               <i className="bi bi-search"></i>
             </button>
           </form>

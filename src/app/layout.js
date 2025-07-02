@@ -1,14 +1,9 @@
+'use client';
 import { Geist, Geist_Mono } from "next/font/google";
-import React from "react";
+import React, { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Navigation from './component/navigation';
-
-
-export const metadata = {
-  title: "Next.js App",
-  description: "A Next.js application with custom fonts and Bootstrap",
-};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,18 +15,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
 export default function RootLayout({ children }) {
+  useEffect(() => {
+    import('bootstrap/dist/js/bootstrap.bundle.min.js');
+  }, []);
+
   return (
     <html lang="en">
       <body>
-        <div className="container-fluid pt-3 ">
+        <div className="container-fluid pt-3">
           <div className="row">
             <div className="col-12 p-2">
-        <Navigation />
+              <Navigation />
             </div>
           </div>
-        {children}
+          {children}
         </div>
       </body>
     </html>
