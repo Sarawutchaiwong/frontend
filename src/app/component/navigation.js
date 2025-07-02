@@ -52,6 +52,11 @@ export default function Navigation() {
                 <i className="bi bi-envelope me-1"></i> Contact
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link text-dark" href="/about">
+                <i className="bi bi-envelope me-1"></i> About
+              </Link>
+            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle text-dark"
