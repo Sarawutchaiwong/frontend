@@ -6,21 +6,22 @@ import Image from 'next/image'
 export default function Navigation() {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light bg-light shadow-sm border border-gray mb-2"
+      className="navbar navbar-expand-lg navbar-light bg-light shadow-sm border border-gray mb-2 opacity-90"
       style={{
+        backgroundColor: "#ffffff",
         borderRadius: "1rem",
+        padding: "0.8rem 1.5rem",
         width: "100%"
-        
       }}
     >
-      <div className="container-fluid py-2">
+      <div className="container-fluid">
         <Link className="navbar-brand d-flex align-items-center" href="/">
           <Image
             src="/images/logo.png"
             alt="Logo"
-            width={100}
-            height={80}
-            className="rounded-circle me-2"
+            width={70}
+            height={50}
+            className="me-2"
             style={{ objectFit: "contain" }}
           />
         </Link>
@@ -36,37 +37,40 @@ export default function Navigation() {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item p-2">
-              <Link className="nav-link text-dark" aria-current="page" href="/">
-                <i className="bi bi-house-door me-1"></i> Home
+          <ul className="navbar-nav mb-2 mb-lg-0"> {/* Removed ms-auto */}
+            <li className="nav-item">
+              <Link className="nav-link text-dark fw-semibold" aria-current="page" href="/">
+                Home
               </Link>
             </li>
-            <li className="nav-item p-2">
-              <Link className="nav-link text-dark" href="/service">
-                <i className="bi bi-gear me-1"></i> Service
+            <li className="nav-item">
+              <Link className="nav-link text-dark fw-semibold" href="/service">
+                Service
               </Link>
             </li>
-            <li className="nav-item p-2">
-              <Link className="nav-link text-dark" href="/contact">
-                <i className="bi bi-envelope me-1"></i> Contact
+            <li className="nav-item">
+              <Link className="nav-link text-dark fw-semibold" href="/contact">
+                Contact
               </Link>
             </li>
-            <li className="nav-item p-2">
-              <Link className="nav-link text-dark" href="/about">
-                <i className="bi bi-envelope me-1"></i> About
-              </Link>
-
-            </li>
-            
-            <li className="nav-item p-2">
-              <Link className="nav-link btn btn-primary border" href="/login">
-                <i className="bi bi-person-plus me-1"></i> Register/Login
+            <li className="nav-item">
+              <Link className="nav-link text-dark fw-semibold" href="/about">
+                About
               </Link>
             </li>
           </ul>
+
           
-          
+          <form className="d-flex ms-auto p-2" role="search">
+  <input className="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" />
+  <button className="btn btn-outline-primary rounded-pill" type="submit">Search</button>
+</form>
+
+          <li className="btn btn-outline-primary rounded-pill">
+              <Link className="nav-link" href="/login">
+                <i className="bi bi-person-plus"></i> Register/Login
+              </Link>
+            </li>
         </div>
       </div>
     </nav>

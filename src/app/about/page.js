@@ -6,22 +6,22 @@ export default function About() {
     <div className="container my-5">
       <div className="row text-center mb-5">
         <div className="col">
-          <h1 className="display-4">About CMTC</h1>
+          <h1 className="display-4">About RainCane</h1>
           <p className="lead">
             We are Collage that individuals dedicated to creating innovative solutions.
           </p>
         </div>
       </div>
 
-      <div className="row mb-5 align-items-center border border rounded shadow-sm ">
+      <div className="row mb-3 align-items-center bg-light py-5 border shadow-sm">
         <div className="col-md-6">
           <h2>Our Mission</h2>
           <p>
             Our mission is to deliver high-quality products that exceed customer expectations. We strive for excellence in everything we do from development to customer support. We believe in the power of technology to transform industries and improve lives.
           </p>
         </div>
-        <div className="col-md-6">
-          <Image src="/images/logo.png" alt="Our Mission" className="img-fluid rounded" width={500} height={300} />
+        <div className="col-md-6 p-4">
+          <Image src="/images/heavy-rain.png" alt="Our Mission" className="img-fluid rounded" width={400} height={300} />
         </div>
       </div>
 

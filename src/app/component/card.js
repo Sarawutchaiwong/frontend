@@ -23,7 +23,7 @@ export default function Card() {
 <div className="card shadow-sm h-100 rounded-4">
     <Image className="card-img-top" src="/images/roblox2.png" alt="..." width={200} height={200}/>
   <div className="card-body d-flex flex-column">
-    <h5 className="card-title text-success">Exiting Face</h5>
+    <h5 className="card-title text-primary">Exiting Face</h5>
     <p className="card-text">cause of interesting.</p>
   </div>
 </div>
@@ -33,7 +33,7 @@ export default function Card() {
 <div className="card shadow-sm h-100 rounded-4">
     <Image className="card-img-top" src="/images/roblox3.png" alt="..." width={200} height={200}/>
   <div className="card-body d-flex flex-column">
-    <h5 className="card-title text-warning">Handsome Face</h5>
+    <h5 className="card-title text-primary">Handsome Face</h5>
     <p className="card-text">cause of confident.</p>
   </div>
 </div>
@@ -43,7 +43,7 @@ export default function Card() {
 <div className="card shadow-sm h-100 rounded-4">
     <Image className="card-img-top" src="/images/roblox4.png" alt="..." width={200} height={200}/>
   <div className="card-body d-flex flex-column">
-    <h5 className="card-title text-danger">Crazy face</h5>
+    <h5 className="card-title text-primary">Crazy face</h5>
     <p className="card-text">cause of not giving self pills.</p>
   </div>
 </div>
