@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Navigation from './component/navigation';
+import Footer from './component/footer';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
           </div>
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );

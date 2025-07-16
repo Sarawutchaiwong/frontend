@@ -13,11 +13,11 @@ export default function About() {
         </div>
       </div>
 
-      <div className="row mb-5 align-items-center">
+      <div className="row mb-5 align-items-center border border rounded shadow-sm ">
         <div className="col-md-6">
           <h2>Our Mission</h2>
           <p>
-            Our mission is to deliver high-quality products that exceed customer expectations. We strive for excellence in everything we do, from development to customer support. We believe in the power of technology to transform industries and improve lives.
+            Our mission is to deliver high-quality products that exceed customer expectations. We strive for excellence in everything we do from development to customer support. We believe in the power of technology to transform industries and improve lives.
           </p>
         </div>
         <div className="col-md-6">
@@ -25,7 +25,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="row mb-5 align-items-center bg-light py-5">
+      <div className="row mb-5 align-items-center bg-light py-5 border shadow-sm">
         <div className="col-md-6 order-md-2">
           <h2>Our Vision</h2>
           <p>
