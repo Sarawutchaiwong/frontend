@@ -29,14 +29,14 @@ export default function Carousel() {
           ></button>
         </div>
         <div className="carousel-inner rounded-4">
-          <div className="carousel-item active">
-            <Image src="/images/slider1.png" className="d-block w-100" alt="..." width={1920} height={960} />
+          <div className="carousel-item active" style={{ height: '920px', position: 'relative' }}>
+            <Image src="/images/slider1.png" fill style={{ objectFit: 'cover' }} alt="..." />
           </div>
-          <div className="carousel-item">
-            <Image src="/images/slider2.png" className="d-block w-100" alt="..." width={1920} height={960} />
+          <div className="carousel-item" style={{ height: '920px', position: 'relative' }}>
+            <Image src="/images/slider2.png" fill style={{ objectFit: 'cover' }} alt="..." />
           </div>
-          <div className="carousel-item">
-            <Image src="/images/slider3.png" className="d-block w-100" alt="..." width={1920} height={960} />
+          <div className="carousel-item" style={{ height: '920px', position: 'relative' }}>
+            <Image src="/images/slider3.png" fill style={{ objectFit: 'cover' }} alt="..." />
           </div>
         </div>
         <button

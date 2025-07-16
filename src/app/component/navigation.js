@@ -13,7 +13,7 @@ export default function Navigation() {
         
       }}
     >
-      <div className="container-fluid">
+      <div className="container-fluid py-2">
         <Link className="navbar-brand d-flex align-items-center" href="/">
           <Image
             src="/images/logo.png"
@@ -37,55 +37,36 @@ export default function Navigation() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            <li className="nav-item p-2">
               <Link className="nav-link text-dark" aria-current="page" href="/">
                 <i className="bi bi-house-door me-1"></i> Home
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item p-2">
               <Link className="nav-link text-dark" href="/service">
                 <i className="bi bi-gear me-1"></i> Service
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item p-2">
               <Link className="nav-link text-dark" href="/contact">
                 <i className="bi bi-envelope me-1"></i> Contact
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item p-2">
               <Link className="nav-link text-dark" href="/about">
                 <i className="bi bi-envelope me-1"></i> About
               </Link>
+
             </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle text-dark"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i className="bi bi-three-dots"></i> More
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item" href="#">Action</Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" href="#">Another action</Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" href="#">Something else here</Link>
-                </li>
-              </ul>
+            
+            <li className="nav-item p-2">
+              <Link className="nav-link btn btn-primary border" href="/login">
+                <i className="bi bi-person-plus me-1"></i> Register/Login
+              </Link>
             </li>
           </ul>
-          <form className="d-flex ms-lg-3 mt-3 mt-lg-0" role="search">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-secondary" type="submit">
-              <i className="bi bi-search"></i>
-            </button>
-          </form>
+          
+          
         </div>
       </div>
     </nav>

@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="row">
           <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
             <Link href="/" className="d-inline-block mb-3">
-                <Image src="/images/logo.png" alt="Logo" width={150} height={60} />
+                <Image src="/images/logo.png" alt="Logo" width={100} height={100} />
             </Link>
             <p className="text-muted">
               Discover a world of expressions. Your one-stop destination for unique and fun face assets.

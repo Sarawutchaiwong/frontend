@@ -6,9 +6,9 @@ export default function About() {
     <div className="container my-5">
       <div className="row text-center mb-5">
         <div className="col">
-          <h1 className="display-4">About Our Company</h1>
+          <h1 className="display-4">About CMTC</h1>
           <p className="lead">
-            We are a team of passionate individuals dedicated to creating innovative solutions.
+            We are Collage that individuals dedicated to creating innovative solutions.
           </p>
         </div>
       </div>
