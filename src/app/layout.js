@@ -1,5 +1,6 @@
 'use client';
 import { Geist, Geist_Mono } from "next/font/google";
+import { Kanit } from "next/font/google";
 import React, { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -16,6 +17,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const kanit = Kanit({ subsets: ["latin"], weight: ["400", "700"] });
+
 export default function RootLayout({ children }) {
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap.bundle.min.js');
@@ -23,7 +26,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body>
+      <body className={kanit.className}>
         <div className="container-fluid pt-3">
           <div className="row">
             <div className="col-12 p-2">
