@@ -11,7 +11,7 @@ export default function Dashboard() {
               <h2 className="card-title">Current Conditions</h2>
               <p><strong>Rainfall Intensity:</strong> -- mm/hr</p>
               <p><strong>Last Recorded Rainfall:</strong> -- mm (at --:--)</p>
-              <p><strong>Status:</strong> No rain</p>
+              <p><strong>Status:</strong> Heavy rain</p>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@ export default function Dashboard() {
               <p><strong>Daily Total:</strong> -- mm</p>
               <p><strong>Weekly Total:</strong> -- mm</p>
               <p><strong>Monthly Total:</strong> -- mm</p>
-              <p><em>(Placeholder for charts/graphs)</em></p>
+              
             </div>
           </div>
         </div>

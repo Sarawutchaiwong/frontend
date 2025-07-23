@@ -109,6 +109,12 @@ export default function Register() {
                   <label htmlFor="inputZip" className="form-label">Zip</label>
                   <input type="text" className="form-control" id="inputZip" required />
                 </div>
+                <div className='col-md-6'>
+                  <date>
+                    <label htmlFor="inputDate" className="form-label">Date of Birth</label>
+                    <input type="date" className="form-control" id="inputDate" required />
+                  </date>
+                </div>
                 <div className="col-12">
                   <div className="form-check">
                     <input className="form-check-input" type="checkbox" id="gridCheck" />

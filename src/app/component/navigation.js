@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default function Navigation() {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light bg-light shadow-sm border border-gray mb-2 opacity-90"
+      className="navbar navbar-expand-lg navbar-light bg-light shadow-sm border border-gray mb-2 opacity-90 glassmorphic"
       style={{
         backgroundColor: "#ffffff",
         borderRadius: "1rem",

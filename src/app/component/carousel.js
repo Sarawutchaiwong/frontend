@@ -19,12 +19,14 @@ export default function Carousel() {
             type="button"
             data-bs-target="#carouselExampleFade"
             data-bs-slide-to="1"
+            
             aria-label="Slide 2"
           ></button>
           <button
             type="button"
             data-bs-target="#carouselExampleFade"
             data-bs-slide-to="2"
+            
             aria-label="Slide 3"
           ></button>
         </div>
@@ -32,10 +34,10 @@ export default function Carousel() {
           <div className="carousel-item active" style={{ height: '450px', position: 'relative' }}>
             <Image src="/images/slider1.jpg" fill style={{ objectFit: 'cover' }} alt="..." />
           </div>
-          <div className="carousel-item" style={{ height: '450px', position: 'relative' }}>
+          <div className="carousel-item active" style={{ height: '450px', position: 'relative' }}>
             <Image src="/images/slider2.jpg" fill style={{ objectFit: 'cover' }} alt="..." />
           </div>
-          <div className="carousel-item" style={{ height: '450px', position: 'relative' }}>
+          <div className="carousel-item active" style={{ height: '450px', position: 'relative' }}>
             <Image src="/images/slider3.jpg" fill style={{ objectFit: 'cover' }} alt="..." />
           </div>
         </div>
