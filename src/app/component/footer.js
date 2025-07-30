@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="py-5 mt-5 bg-light shadow-sm" style={{ borderRadius: '1rem' }}>
+    <footer className="py-5 mt-5 shadow-sm" style={{ borderRadius: '1rem', backgroundColor: 'rgba(255, 255, 255, 0.84)' }}>
       <div className="container">
         <div className="row">
           <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">

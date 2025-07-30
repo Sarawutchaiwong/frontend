@@ -7,6 +7,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import Navigation from './component/navigation';
 import Footer from './component/footer';
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,7 +27,8 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={kanit.className}>
+      <body className={kanit.className} style={{ backgroundColor: 'gray', backgroundImage: 'url(/images/slider1.jpg)', backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'
+      }}>
         <div className="container-fluid pt-3">
           <div className="row">
             <div className="col-12 p-2">

@@ -27,9 +27,9 @@ export default function Service() {
           <div className="card shadow-sm h-100 rounded-4">
             <Image className="card-img-top" src="/images/roblox2.png" alt="Exciting Face" width={200} height={200} />
             <div className="card-body d-flex flex-column">
-              <h5 className="card-title text-success">Exciting Face</h5>
+              <h5 className="card-title text-primary">Exciting Face</h5>
               <p className="card-text">A service that adds a thrill to your day.</p>
-              <Link href="/service" className="btn btn-success btn-sm mt-auto">Learn More</Link>
+              <Link href="/service" className="btn btn-primary btn-sm mt-auto">Learn More</Link>
             </div>
           </div>
         </div>
@@ -37,9 +37,9 @@ export default function Service() {
           <div className="card shadow-sm h-100 rounded-4">
             <Image className="card-img-top" src="/images/roblox3.png" alt="Handsome Face" width={200} height={200} />
             <div className="card-body d-flex flex-column">
-              <h5 className="card-title text-warning">Handsome Face</h5>
+              <h5 className="card-title text-primary">Handsome Face</h5>
               <p className="card-text">A service that boosts your confidence.</p>
-              <Link href="/about" className="btn btn-warning btn-sm text-white mt-auto">Learn More</Link>
+              <Link href="/about" className="btn btn-primary btn-sm text-white mt-auto">Learn More</Link>
             </div>
           </div>
         </div>
@@ -47,9 +47,9 @@ export default function Service() {
           <div className="card shadow-sm h-100 rounded-4">
             <Image className="card-img-top" src="/images/roblox4.png" alt="Crazy Face" width={200} height={200} />
             <div className="card-body d-flex flex-column">
-              <h5 className="card-title text-danger">Crazy Face</h5>
+              <h5 className="card-title text-primary">Crazy Face</h5>
               <p className="card-text">A service for when youre feeling wild.</p>
-              <Link href="/contact" className="btn btn-danger btn-sm mt-auto">Learn More</Link>
+              <Link href="/contact" className="btn btn-primary btn-sm mt-auto">Learn More</Link>
             </div>
           </div>
         </div>

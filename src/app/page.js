@@ -12,9 +12,9 @@ export default function Home() {
   <Dashboard />
   <Carousel />
 
-    <h1 className='mt-150 p-4 text-center'>Category</h1>
 
-  <Card />
+
+
   
   </>
   );

@@ -6,9 +6,9 @@ import Image from 'next/image'
 export default function Navigation() {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light bg-light shadow-sm border border-gray mb-2 opacity-90 glassmorphic"
+      className="navbar navbar-expand-lg navbar-light shadow-sm border border-gray mb-2"
       style={{
-        backgroundColor: "#ffffff",
+        backgroundColor: "rgba(255, 255, 255, 0.63)",
         borderRadius: "1rem",
         padding: "0.8rem 1.5rem",
         width: "100%"
@@ -37,7 +37,7 @@ export default function Navigation() {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mb-2 mb-lg-0"> {/* Removed ms-auto */}
+          <ul className="navbar-nav mb-2 mb-lg-0 p-2"> {/* Removed ms-auto */}
             <li className="nav-item">
               <Link className="nav-link text-dark fw-semibold" aria-current="page" href="/">
                 Home
