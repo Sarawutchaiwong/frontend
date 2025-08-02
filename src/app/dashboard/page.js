@@ -39,27 +39,19 @@ export default function Dashboard() {
   return (
     <div className={styles.dashboard}>
     
-      <header className={styles.header}>
-        <h1 className={styles.title}>RainCane</h1></header>
-      
+      <div className={styles.hero}>
+        <div className={styles.heroOverlay}></div>
+        <div className={styles.heroContent}>
+          <h1 className={styles.title}>RainCane</h1>
+          <p className={styles.subtitle}>Your Daily Weather Companion</p>
+          <p className={styles.description}>
+            Get accurate and up-to-date weather information online.
+          </p>
 
-      <main className={styles.mainContent}>
-        <div className={styles.currentWeather}>
-          <h2>Current Weather in {city}</h2>
-          <div className={styles.weatherDetails}>
-            <div className={styles.weatherIcon}>
-              {weatherIcons[currentWeather.condition]}
-            </div>
-            <div className={styles.weatherInfo}>
-              <p className={styles.temperature}>{currentWeather.temp}°C</p>
-              <p>{currentWeather.condition}</p>
-            </div>
-            <div className={styles.additionalInfo}>
-              <p>Humidity: {currentWeather.humidity}%</p>
-              <p>Wind: {currentWeather.wind} km/h</p>
-            </div>
-          </div>
         </div>
+      </div>
+      
+      <main className={styles.mainContent}>
 
         <div className={styles.forecast}>
           <h2>7-Day Forecast</h2>
@@ -125,20 +117,7 @@ export default function Dashboard() {
         </div>
         
 
-        <div className={styles.highlights}>
-          <h2>Moon Phase</h2>
-          <ul>
-            <li>
-              <p><strong>Phase:</strong> Waxing Crescent</p>
-            </li>
-            <li>
-              <p><strong>Illumination:</strong> 30%</p>
-            </li>
-            <li>
-              <p><strong>Next Full Moon:</strong> Aug 15</p>
-            </li>
-          </ul>
-        </div>
+        
       </main>
     </div>
   );

@@ -22,11 +22,61 @@
   }
 }
 
-.header h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.hero {
+  position: relative;
+  padding: 4rem 2rem;
+  border-radius: 12px;
   text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+  background: url('/images/bg.jpg') no-repeat center center/cover;
+  overflow: hidden;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+.weatherDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weatherInfo h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.temperature {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.weatherIcon svg {
+  width: 120px;
+  height: 120px;
+}
+
+.additionalInfo p {
+  font-size: 1.2rem;
 }
 
 @media (min-width: 768px) {
@@ -76,10 +126,11 @@
 }
 
 .currentWeather, .forecast, .highlights {
-  background-color: rgba(248, 248, 248, 0.712);
+  background-color: rgba(0, 0, 0, 0.295);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.123);
+  color: white;
 }
 
 @media (min-width: 768px) {
@@ -169,7 +220,7 @@
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 0.5rem;
   overflow-x: auto;
-  padding-bottom: 0.5rem; /* For scrollbar */
+  padding-bottom: 0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -184,7 +235,7 @@
   text-align: center;
   padding: 0.5rem;
   border-radius: 4px;
-  background-color: #f8f9fa;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .forecastIcon {

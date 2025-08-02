@@ -8,6 +8,8 @@ import Navigation from './component/navigation';
 import Footer from './component/footer';
 
 
+import './background.css';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,8 +29,10 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={kanit.className} style={{ backgroundColor: 'gray', backgroundImage: 'url(/images/slider1.jpg)', backdropFilter: 'blur(5px)', WebkitBackdropFilter: 'blur(5px)', backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'
-      }}>
+      <body className={kanit.className}>
+        <video autoPlay muted loop className="background-video">
+          <source src="/video/bg.mp4" type="video/mp4" />
+        </video>
         <div className="container-fluid pt-3">
           <div className="row">
             <div className="col-12 p-2">

@@ -6,12 +6,15 @@ import Image from 'next/image'
 export default function Navigation() {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light shadow-sm border border-gray mb-2"
+      className="navbar navbar-expand-lg navbar-dark shadow-sm border-0 mb-2"
       style={{
-        backgroundColor: "rgba(255, 255, 255, 0.63)",
+        backgroundColor: "rgba(0, 0, 0, 0.3)",
         borderRadius: "1rem",
         padding: "0.8rem 1.5rem",
-        width: "100%"
+        width: "98%",
+        alignItems: "center",
+        margin: "0 auto",
+        color: "white"
       }}
     >
       <div className="container-fluid">
@@ -39,22 +42,22 @@ export default function Navigation() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mb-2 mb-lg-0 p-2"> {/* Removed ms-auto */}
             <li className="nav-item">
-              <Link className="nav-link text-dark fw-semibold" aria-current="page" href="/">
+              <Link className="nav-link text-white fw-semibold" aria-current="page" href="/">
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-dark fw-semibold" href="/service">
+              <Link className="nav-link text-white fw-semibold" href="/service">
                 Service
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-dark fw-semibold" href="/contact">
+              <Link className="nav-link text-white fw-semibold" href="/contact">
                 Contact
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-dark fw-semibold" href="/about">
+              <Link className="nav-link text-white fw-semibold" href="/about">
                 About
               </Link>
             </li>
@@ -63,10 +66,10 @@ export default function Navigation() {
           
           <form className="d-flex ms-auto p-2" role="search">
   <input className="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" />
-  <button className="btn btn-outline-primary rounded-pill" type="submit">Search</button>
+  <button className="btn btn-outline-light rounded-pill" type="submit">Search</button>
 </form>
 
-          <li className="btn btn-outline-primary rounded-pill">
+          <li className="btn btn-outline-light rounded-pill">
               <Link className="nav-link" href="/login">
                 <i className="bi bi-person-plus"></i> Register/Login
               </Link>
