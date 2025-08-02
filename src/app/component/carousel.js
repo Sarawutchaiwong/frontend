@@ -9,7 +9,6 @@ export default function Carousel() {
     { src: '/images/slider1.jpg', alt: 'Slider 1' },
     { src: '/images/slider2.jpg', alt: 'Slider 2' },
     { src: '/images/slider3.jpg', alt: 'Slider 3' },
-    
     { src: '/images/slider4.jpg', alt: 'Slider 4' },
     { src: '/images/slider5.jpg', alt: 'Slider 5' },
     { src: '/images/slider6.jpg', alt: 'Slider 6' },
@@ -46,7 +45,7 @@ export default function Carousel() {
           <div
             key={index}
             className={`${styles.slide} ${index === activeIndex ? styles.active : ''}`}>
-            <Image src={slide.src} width={500} height={300} alt={slide.alt} className={styles.image}/>
+            <Image src={slide.src} width={500} height={300} layout="responsive" alt={slide.alt} className={styles.image}/>
           </div>
         ))}
       </div>
