@@ -1,23 +1,71 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // ✅ FIXED: import useRouter
+import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 
 export default function Register() {
-  const router = useRouter(); // ✅ FIXED: useRouter at top level
+  const router = useRouter();
 
-  const [firstname, setFirstname] = useState('');
-  const [fullname, setFullname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [address, setAddress] = useState('');
-  const [sex, setSex] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [formData, setFormData] = useState({
+    firstname: '',
+    fullname: '',
+    lastname: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+    address: '',
+    sex: '',
+    birthday: '',
+    email: '',
+    city: '',
+    province: '',
+    zip: '',
+    acceptTerms: false,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.firstname) newErrors.firstname = 'คำนำหน้าชื่อ is required';
+    if (!formData.fullname) newErrors.fullname = 'ชื่อ is required';
+    if (!formData.lastname) newErrors.lastname = 'นามสกุล is required';
+    if (!formData.username) newErrors.username = 'ชื่อเล่น is required';
+    if (!formData.password) newErrors.password = 'Password is required';
+    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+    if (!formData.address) newErrors.address = 'Address is required';
+    if (!formData.sex) newErrors.sex = 'เพศ is required';
+    if (!formData.birthday) newErrors.birthday = 'Date of Birth is required';
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    if (!formData.city) newErrors.city = 'City is required';
+    if (!formData.province) newErrors.province = 'Province is required';
+    if (!formData.zip) newErrors.zip = 'Zip is required';
+    if (!formData.acceptTerms) newErrors.acceptTerms = 'You must accept the terms and conditions';
+
+    return newErrors;
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setErrors({});
 
     try {
       const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users', {
@@ -27,14 +75,14 @@ export default function Register() {
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          firstname,
-          fullname,
-          lastname,
-          username,
-          password,
-          address,
-          sex,
-          birthday,
+          firstname: formData.firstname,
+          fullname: formData.fullname,
+          lastname: formData.lastname,
+          username: formData.username,
+          password: formData.password,
+          address: formData.address,
+          sex: formData.sex,
+          birthday: formData.birthday,
         }),
       });
 
@@ -48,18 +96,8 @@ export default function Register() {
           showConfirmButton: false,
           timer: 2000,
         }).then(() => {
-          router.push('/register'); // ✅ Redirect after success
+          router.push('/login');
         });
-
-        // Clear form
-        setFirstname('');
-        setFullname('');
-        setLastname('');
-        setUsername('');
-        setPassword('');
-        setAddress('');
-        setSex('');
-        setBirthday('');
       } else {
         Swal.fire({
           title: 'Error!',
@@ -86,179 +124,214 @@ export default function Register() {
               <h1 className="card-title text-center mb-4 display-4">Register</h1>
 
               <form onSubmit={handleSubmit} className="row g-3">
-                {/* Prefix */}
                 <div className="col-md-6">
                   <label htmlFor="prefix" className="form-label">คำนำหน้าชื่อ</label>
                   <select
-                    value={firstname}
-                    onChange={(e) => setFirstname(e.target.value)}
+                    name="firstname"
+                    value={formData.firstname}
+                    onChange={handleChange}
                     id="prefix"
-                    className="form-select"
-                    required
-                  >
+                    className={`form-select ${errors.firstname ? 'is-invalid' : ''}`}>
                     <option value="">Choose...</option>
                     <option value="นาย">นาย</option>
                     <option value="นางสาว">นางสาว</option>
                     <option value="นาง">นาง</option>
                   </select>
+                  {errors.firstname && <div className="invalid-feedback">{errors.firstname}</div>}
                 </div>
 
-                {/* Nickname */}
                 <div className="col-md-6">
                   <label htmlFor="nickname" className="form-label">ชื่อเล่น</label>
                   <input
                     type="text"
-                    className="form-control"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
                     id="nickname"
-                    required
                   />
+                  {errors.username && <div className="invalid-feedback">{errors.username}</div>}
                 </div>
 
-                {/* Firstname */}
                 <div className="col-md-6">
                   <label htmlFor="firstName" className="form-label">ชื่อ</label>
                   <input
                     type="text"
-                    className="form-control"
-                    value={fullname}
-                    onChange={(e) => setFullname(e.target.value)}
+                    className={`form-control ${errors.fullname ? 'is-invalid' : ''}`}
+                    name="fullname"
+                    value={formData.fullname}
+                    onChange={handleChange}
                     id="firstName"
-                    required
                   />
+                  {errors.fullname && <div className="invalid-feedback">{errors.fullname}</div>}
                 </div>
 
-                {/* Lastname */}
                 <div className="col-md-6">
                   <label htmlFor="lastName" className="form-label">นามสกุล</label>
                   <input
                     type="text"
-                    className="form-control"
-                    value={lastname}
-                    onChange={(e) => setLastname(e.target.value)}
+                    className={`form-control ${errors.lastname ? 'is-invalid' : ''}`}
+                    name="lastname"
+                    value={formData.lastname}
+                    onChange={handleChange}
                     id="lastName"
-                    required
                   />
+                  {errors.lastname && <div className="invalid-feedback">{errors.lastname}</div>}
                 </div>
 
-                {/* Gender */}
                 <div className="col-md-6">
                   <label className="form-label">เพศ</label>
                   <div>
                     <div className="form-check form-check-inline">
                       <input
-                        className="form-check-input"
+                        className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
                         type="radio"
-                        name="gender"
+                        name="sex"
                         id="male"
                         value="ชาย"
-                        onChange={(e) => setSex(e.target.value)}
-                        required
+                        onChange={handleChange}
                       />
                       <label className="form-check-label" htmlFor="male">ชาย</label>
                     </div>
                     <div className="form-check form-check-inline">
                       <input
-                        className="form-check-input"
+                        className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
                         type="radio"
-                        name="gender"
+                        name="sex"
                         id="female"
                         value="หญิง"
-                        onChange={(e) => setSex(e.target.value)}
-                        required
+                        onChange={handleChange}
                       />
                       <label className="form-check-label" htmlFor="female">หญิง</label>
                     </div>
                   </div>
+                  {errors.sex && <div className="invalid-feedback d-block">{errors.sex}</div>}
                 </div>
 
-                {/* Email (not included in backend currently) */}
                 <div className="col-md-6">
                   <label htmlFor="email" className="form-label">Email</label>
-                  <input type="email" className="form-control" id="email" required />
+                  <input
+                    type="email"
+                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    id="email"
+                  />
+                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                 </div>
 
-                {/* Password */}
                 <div className="col-md-6">
                   <label htmlFor="inputPassword" className="form-label">Password</label>
                   <input
                     type="password"
-                    className="form-control"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                     id="inputPassword"
-                    required
                   />
+                  {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                 </div>
 
-                {/* Confirm Password (not checked) */}
                 <div className="col-md-6">
                   <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-                  <input type="password" className="form-control" id="confirmPassword" required />
+                  <input
+                    type="password"
+                    className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    id="confirmPassword"
+                  />
+                  {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
                 </div>
 
-                {/* Address */}
                 <div className="col-12">
                   <label htmlFor="inputAddress" className="form-label">Address</label>
                   <textarea
-                    className="form-control"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
+                    className={`form-control ${errors.address ? 'is-invalid' : ''}`}
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
                     id="inputAddress"
-                    required
                   />
+                  {errors.address && <div className="invalid-feedback">{errors.address}</div>}
                 </div>
 
-                {/* City */}
                 <div className="col-md-6">
                   <label htmlFor="inputCity" className="form-label">City</label>
-                  <input type="text" className="form-control" id="inputCity" required />
+                  <input
+                    type="text"
+                    className={`form-control ${errors.city ? 'is-invalid' : ''}`}
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    id="inputCity"
+                  />
+                  {errors.city && <div className="invalid-feedback">{errors.city}</div>}
                 </div>
 
-                {/* Province */}
                 <div className="col-md-4">
                   <label htmlFor="inputState" className="form-label">Province</label>
-                  <select id="inputState" className="form-select" required>
+                  <select
+                    id="inputState"
+                    name="province"
+                    className={`form-select ${errors.province ? 'is-invalid' : ''}`}
+                    value={formData.province}
+                    onChange={handleChange}>
                     <option value="">Choose...</option>
                     <option value="BKK">Bangkok</option>
                     <option value="CPN">Chonburi</option>
                     <option value="CNG">Chiang Mai</option>
                     <option value="PKT">Phuket</option>
-                    {/* ...other provinces */}
                   </select>
+                  {errors.province && <div className="invalid-feedback">{errors.province}</div>}
                 </div>
 
-                {/* Zip */}
                 <div className="col-md-2">
                   <label htmlFor="inputZip" className="form-label">Zip</label>
-                  <input type="text" className="form-control" id="inputZip" required />
+                  <input
+                    type="text"
+                    className={`form-control ${errors.zip ? 'is-invalid' : ''}`}
+                    name="zip"
+                    value={formData.zip}
+                    onChange={handleChange}
+                    id="inputZip"
+                  />
+                  {errors.zip && <div className="invalid-feedback">{errors.zip}</div>}
                 </div>
 
-                {/* Birthday */}
                 <div className="col-md-6">
                   <label htmlFor="inputDate" className="form-label">Date of Birth</label>
                   <input
                     type="date"
-                    className="form-control"
+                    className={`form-control ${errors.birthday ? 'is-invalid' : ''}`}
                     id="inputDate"
-                    value={birthday}
-                    onChange={(e) => setBirthday(e.target.value)}
-                    required
+                    name="birthday"
+                    value={formData.birthday}
+                    onChange={handleChange}
                   />
+                  {errors.birthday && <div className="invalid-feedback">{errors.birthday}</div>}
                 </div>
 
-                {/* Checkbox */}
                 <div className="col-12">
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" id="gridCheck" required />
+                    <input
+                      className={`form-check-input ${errors.acceptTerms ? 'is-invalid' : ''}`}
+                      type="checkbox"
+                      id="gridCheck"
+                      name="acceptTerms"
+                      checked={formData.acceptTerms}
+                      onChange={handleChange}
+                    />
                     <label className="form-check-label" htmlFor="gridCheck">
                       Accept terms and conditions
                     </label>
+                    {errors.acceptTerms && <div className="invalid-feedback d-block">{errors.acceptTerms}</div>}
                   </div>
                 </div>
 
-                {/* Submit Button */}
                 <div className="col-12 d-grid gap-2">
                   <button type="submit" className="btn btn-primary">Register</button>
                 </div>
