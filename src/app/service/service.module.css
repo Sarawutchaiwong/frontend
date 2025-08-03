@@ -86,10 +86,8 @@
 .serviceBlock img {
   width: 120px;
   height: 120px;
-  margin-bottom: 25px;
-  border-radius: 50%;
-  border: 5px solid #007bff;
   object-fit: cover;
+  margin-bottom: 30px;
 }
 
 .serviceBlock h2 {
