@@ -7,38 +7,38 @@
 .heroSection {
   padding: 120px 20px;
   text-align: center;
-  color: #ffffffea;
   position: relative;
-  }
+}
 
 .heroSection::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 20;
+  right: 20;
   bottom: 0;
+  background-color: rgba(0, 0, 0, 0.301);
+  border-radius: 15px;
 }
 
 .heroSection h1 {
   font-size: 4.5rem;
   margin-bottom: 20px;
-  color: #000000;
+  color: #fff; /* White color for better contrast */
   position: relative;
   z-index: 1;
   font-weight: bold;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Stronger text shadow */
 }
 
 .heroSection p {
   font-size: 1.4rem;
   max-width: 800px;
   margin: 0 auto;
-  color: #000000;
+  color: #fff; /* White color for better contrast */
   position: relative;
   z-index: 1;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
-
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Stronger text shadow */
 }
 
 .servicesSection {
@@ -47,6 +47,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  background-color: #ffffff00;
 }
 
 .serviceBlock {
@@ -117,4 +118,89 @@
 .serviceBlock .readMore:hover {
   background-color: #0056b3;
   transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 80px 20px;
+  }
+
+  .heroSection h1 {
+    font-size: 3rem;
+  }
+
+  .heroSection p {
+    font-size: 1.2rem;
+  }
+
+  .servicesSection {
+    padding: 50px 15px;
+    gap: 20px;
+  }
+
+  .serviceBlock {
+    max-width: 100%;
+    padding: 30px;
+  }
+
+  .serviceBlock img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+  }
+
+  .serviceBlock h2 {
+    font-size: 1.8rem;
+  }
+
+  .serviceBlock p {
+    font-size: 1rem;
+  }
+
+  .serviceBlock .readMore {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 60px 15px;
+  }
+
+  .heroSection h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroSection p {
+    font-size: 1rem;
+  }
+
+  .servicesSection {
+    padding: 30px 10px;
+    gap: 15px;
+  }
+
+  .serviceBlock {
+    padding: 20px;
+  }
+
+  .serviceBlock img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;
+  }
+
+  .serviceBlock h2 {
+    font-size: 1.5rem;
+  }
+
+  .serviceBlock p {
+    font-size: 0.9rem;
+  }
+
+  .serviceBlock .readMore {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
 }
