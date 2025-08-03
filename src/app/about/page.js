@@ -22,14 +22,14 @@ export default function About() {
           <div className={styles.timelineIcon}></div>
           <div className={styles.timelineContent}>
             <h3>2021 - Growth & Innovation</h3>
-            <p>We launched our first product and received overwhelming support. Our team expanded, and we continued to innovate.</p>
+            <p>We launched our first product and received overwhelming support. Our team expanded and we continued to innovate.</p>
           </div>
         </div>
         <div className={styles.timelineItem}>
           <div className={styles.timelineIcon}></div>
           <div className={styles.timelineContent}>
             <h3>2022 - Looking Ahead</h3>
-            <p>We are excited about the future and the opportunities it holds. We are committed to pushing the boundaries of what's possible.</p>
+            <p>We are excited about the future and the opportunities it holds. We are committed to pushing the boundaries of whats possible.</p>
           </div>
         </div>
       </div>
