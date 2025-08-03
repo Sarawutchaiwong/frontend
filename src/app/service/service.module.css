@@ -1,6 +1,122 @@
+.servicePage {
+  padding: 0;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+}
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+.heroSection {
+  padding: 120px 20px;
+  text-align: center;
+  color: #ffffffea;
+  position: relative;
+  }
+
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.heroSection h1 {
+  font-size: 4.5rem;
+  margin-bottom: 20px;
+  color: #000000;
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.heroSection p {
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #000000;
+  position: relative;
+  z-index: 1;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+
+}
+
+.servicesSection {
+  padding: 80px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.serviceBlock {
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 40px;
+  text-align: center;
+  max-width: 380px;
+  flex: 1 1 auto;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.serviceBlock::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0,123,255,0.1), rgba(0,123,255,0));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.serviceBlock:hover::before {
+  opacity: 1;
+}
+
+.serviceBlock:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.serviceBlock img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 25px;
+  border-radius: 50%;
+  border: 5px solid #007bff;
+  object-fit: cover;
+}
+
+.serviceBlock h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.serviceBlock p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.serviceBlock .readMore {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 28px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
+}
+
+.serviceBlock .readMore:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
 }

@@ -1,7 +1,8 @@
 export default function Contact() {
   return (
-    <div className="container py-5 border border rounded shadow-sm bg-light">
-      <div className="row text-center pb-5">
+    <div className="container py-5">
+    <div className="container border border rounded shadow-sm bg-light">
+      <div className="row text-center pb-5 p-5">
         <div className="col-lg-8 mx-auto">
           <h1 className="display-4">Contact Us</h1>
           <p className="text-muted">
@@ -35,6 +36,7 @@ export default function Contact() {
           <p className="text-muted">Phone: (123) 456-7890</p>
         </div>
       </div>
+    </div>
     </div>
   );
 }
