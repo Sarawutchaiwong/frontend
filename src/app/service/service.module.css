@@ -14,8 +14,8 @@
   content: '';
   position: absolute;
   top: 0;
-  left: 20;
-  right: 20;
+  left: 10;
+  right: 10;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.301);
   border-radius: 15px;
