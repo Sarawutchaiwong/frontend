@@ -135,7 +135,7 @@ export default function Page() {
             type="submit"
             className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold p-2 rounded-lg shadow hover:from-yellow-500 hover:to-yellow-700 transition"
           >
-            Save Changes
+            Save Change
           </button>
         </form>
       ))}
