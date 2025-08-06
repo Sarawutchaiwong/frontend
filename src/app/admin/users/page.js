@@ -55,7 +55,7 @@ export default function Page() {
               <td>{item.firstname}</td>
               <td>{item.fullname}</td>
               <td>{item.lastname}</td>
-              <td><Link href="" className="btn btn-warning">Edit</Link></td>
+              <td><Link href={`/admin/users/edit/${item.id}`} className="btn btn-warning">Edit</Link></td>
               <td><button className="btn btn-pill btn-danger" type="button"><i className="fa fa-trash"></i>Del</button></td>
             </tr>
           ))}
