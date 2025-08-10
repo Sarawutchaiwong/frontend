@@ -48,13 +48,5 @@ export default function Carousel() {
             <Image src={slide.src} width={500} height={300} layout="responsive" alt={slide.alt} className={styles.image}/>
           </div>
         ))}
-      </div>
-      <button onClick={prevSlide} className={`${styles.btn} ${styles.prevBtn}`}>
-        &#10094;
-      </button>
-      <button onClick={nextSlide} className={`${styles.btn} ${styles.nextBtn}`}>
-        &#10095;
-      </button>
-    </div>
   );
 }
