@@ -44,9 +44,12 @@ export default function Carousel() {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`${styles.slide} ${index === activeIndex ? styles.active : ''}`}>
+            className={`${styles.slide} ${index === activeIndex ? styles.active : ''}`}
+          >
             <Image src={slide.src} width={500} height={300} layout="responsive" alt={slide.alt} className={styles.image}/>
           </div>
         ))}
+      </div>
+    </div>
   );
 }
