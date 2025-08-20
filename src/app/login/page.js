@@ -33,7 +33,7 @@ export default function Login() {
         showConfirmButton: false,
         timer: 2000
         }).then(function () {
-        //router.push('/admin/users');
+        
         window.location.href = "/admin/users";
       });
     } else {

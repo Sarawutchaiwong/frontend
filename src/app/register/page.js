@@ -69,7 +69,7 @@ export default function Register() {
     setErrors({});
 
     try {
-      const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users', {
+      const res = await fetch('/api/auth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
