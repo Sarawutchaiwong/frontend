@@ -11,7 +11,6 @@ export default function Page() {
   const [fullname, setFullname] = useState('')
   const [lastname, setLastname] = useState('')
   const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [items, setItems] = useState([]);
 
   useEffect(() => {
