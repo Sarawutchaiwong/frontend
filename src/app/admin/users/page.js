@@ -1,26 +1,32 @@
 'use client';
-import Link from 'next/link'
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 
 export default function User() {
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true); // <-- เพิ่ม state loading
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      router.push('/signin');
+      router.push('/login');
       return;
     }
 
     async function getUsers() {
       try {
-        const res = await fetch('https://backend-nextjs-virid.vercel.app/api/users');
+        const res = await fetch('/api/proxy/users', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
         if (!res.ok) {
           console.error('Failed to fetch data');
+          setLoading(false); // Stop loading on error
           return;
         }
         const data = await res.json();
@@ -33,11 +39,13 @@ export default function User() {
     }
 
     getUsers();
-    const interval = setInterval(getUsers, 1000);
-    return () => clearInterval(interval);
-  });
+    // No interval fetching for now to avoid excessive API calls during debugging
+    // const interval = setInterval(getUsers, 5000);
+    // return () => clearInterval(interval);
+  }, [router]);
 
   const handleDelete = async (id) => {
+    const token = localStorage.getItem('token');
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -45,98 +53,105 @@ export default function User() {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          // Using the direct external API for deletion
-          const res = await fetch(`http://itdev.cmtc.ac.th:3000/api/users/${id}`, {
+          const res = await fetch(`/api/proxy/users/${id}`, {
             method: 'DELETE',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
           });
 
           if (res.ok) {
-            Swal.fire(
-              'Deleted!',
-              'The user has been deleted.',
-              'success'
-            )
-            // Refresh the user list by fetching again
-            const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users');
-            if (res.ok) {
-              const data = await res.json();
-              setItems(data);
-            }
+            Swal.fire('Deleted!', 'The user has been deleted.', 'success');
+            setItems(items.filter((item) => item.id !== id));
           } else {
             const errorData = await res.json();
-            Swal.fire(
-              'Error!',
-              errorData.message || 'Something went wrong.',
-              'error'
-            )
+            Swal.fire('Error!', errorData.message || 'Something went wrong.', 'error');
           }
         } catch (error) {
           console.error('Error deleting data:', error);
-          Swal.fire(
-            'Error!',
-            'An error occurred while deleting the user.',
-            'error'
-          )
+          Swal.fire('Error!', 'An error occurred while deleting the user.', 'error');
         }
       }
     });
   };
 
-   if (loading) {
-  return <div className='text-center'><h1>Loading...</h1></div>; // หรือ return null เพื่อไม่ให้ render อะไร
-}
+  const filteredItems = items.filter(
+    (item) =>
+      (item.firstname && item.firstname.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (item.lastname && item.lastname.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (item.username && item.username.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <>
-    <br /><br /><br /><br />
-    <div className="container">
-      <div className="card">
-        <div className="card-header">
-          Users List
-        </div>
+    <div className="container mt-5">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h1 className="mb-0">Users List</h1>
+        <Link href="/register" className="btn btn-primary">
+          Create User
+        </Link>
+      </div>
+      <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search users..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+      <div className="card shadow-sm">
         <div className="card-body">
-          {loading ? (
-            <div className="text-center">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </div>
-          ) : (
-            <div className="row">
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th className='col-md-2 text-center'>#</th>
-                    <th className='col-md-3'>First Name</th>
-                    <th className='col-md-3'>Last Name</th>
-                    <th className='col-md-2'>Username</th>
-                    <th className='col-md-1'>Edit</th>
-                    <th className='col-md-1'>Delete</th>
+          <div className="table-responsive">
+            <table className="table table-striped table-hover align-middle">
+              <thead className="table-dark">
+                <tr>
+                  <th className="text-center">#</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Username</th>
+                  <th className="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredItems.map((item) => (
+                  <tr key={item.id}>
+                    <td className="text-center">{item.id}</td>
+                    <td>{item.firstname}</td>
+                    <td>{item.lastname}</td>
+                    <td>{item.username}</td>
+                    <td className="text-center">
+                      <Link href={`/admin/users/edit/${item.id}`} className="btn btn-sm btn-outline-warning me-2">
+                        Edit
+                      </Link>
+                      <button
+                        className="btn btn-sm btn-outline-danger"
+                        type="button"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {items.map((item) => (
-                    <tr key={item.id}>
-                      <td className='text-center'>{item.id}</td>
-                      <td>{item.firstname}</td>
-                      <td>{item.lastname}</td>
-                      <td>{item.username}</td>
-                      <td><Link href={`/admin/users/edit/${item.id}`} className="btn btn-warning">Edit</Link></td>
-                      <td><button className="btn btn-danger" type="button" onClick={() => handleDelete(item.id)}>Delete</button></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-    <br /><br />
-    </>
   );
 }

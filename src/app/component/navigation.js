@@ -8,7 +8,7 @@ export default function Navigation() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const navbarToggler = useRef(null);
   const router = useRouter();
-
+  
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
   const closeNavbar = () => {
