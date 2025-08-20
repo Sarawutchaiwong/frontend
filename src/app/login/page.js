@@ -116,7 +116,7 @@ export default function Login() {
               {/* Footer Section */}
               <div className={styles['login-footer']}>
                 <p className={styles['register-text']}>
-                  Don't have an account? 
+                  Dont have an account? 
                   <Link href="/register" className={styles['register-link']}>
                     <i className="bi bi-person-plus"></i>
                     Register here
