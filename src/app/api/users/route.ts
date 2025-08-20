@@ -6,7 +6,7 @@ export async function GET() {
       headers: {
         'Content-Type': 'application/json',
       },
-      next: { revalidate: 0 }, // ไม่ cache ข้อมูล
+      next: { revalidate: 0 },
     });
 
     if (!res.ok) {
