@@ -35,7 +35,7 @@ export default function User() {
     getUsers();
     const interval = setInterval(getUsers, 1000);
     return () => clearInterval(interval);
-  }, []);
+  });
 
   const handleDelete = async (id) => {
     Swal.fire({

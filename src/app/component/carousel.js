@@ -33,7 +33,7 @@ export default function Carousel() {
       nextSlide();
     }, 3000);
     return () => clearInterval(interval);
-  }, [activeIndex]);
+  });
 
   return (
     <div className={styles.carouselContainer}>

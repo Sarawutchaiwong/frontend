@@ -49,7 +49,7 @@ export default function Contact() {
                 <>
                   <div className={styles.formHeader}>
                     <h3>Send us a Message</h3>
-                    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                    <p>Fill out the form below and well get back to you as soon as possible.</p>
                   </div>
 
                   <form onSubmit={handleSubmit} className={styles.contactForm}>
@@ -143,7 +143,7 @@ export default function Contact() {
                     <i className="bi bi-check-circle-fill"></i>
                   </div>
                   <h3>Message Sent Successfully!</h3>
-                  <p>Thank you for reaching out to us. We'll get back to you within 24 hours.</p>
+                  <p>Thank you for reaching out to us. Well get back to you within 24 hours.</p>
                   <button 
                     onClick={() => setIsSubmitted(false)}
                     className={styles.newMessageBtn}

@@ -33,7 +33,7 @@ export default function Navigation() {
       router.events?.off('routeChangeComplete', handleRouteChange);
       router.events?.off('routeChangeError', handleRouteChange);
     };
-  }, [router.events]);
+  } );
 
   return (
     <nav
