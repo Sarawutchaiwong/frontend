@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import styles from './register.module.css';
 
 export default function Register() {
   const router = useRouter();
@@ -116,230 +117,312 @@ export default function Register() {
   };
 
   return (
-    <div className="container my-5">
-      <div className="row justify-content-center">
-        <div className="col-md-8">
-          <div className="card shadow-sm" style={{ borderRadius: '1rem' }}>
-            <div className="card-body p-4">
-              <h1 className="card-title text-center mb-4 display-4">Register</h1>
+    <div className={styles['register-container']}>
+      {/* Animated Background */}
+      <div className={styles['animated-bg']}>
+        <div className={styles['floating-shape']}></div>
+        <div className={styles['floating-shape']}></div>
+        <div className={styles['floating-shape']}></div>
+      </div>
 
-              <form onSubmit={handleSubmit} className="row g-3">
-                <div className="col-md-6">
-                  <label htmlFor="prefix" className="form-label">คำนำหน้าชื่อ</label>
-                  <select
-                    name="firstname"
-                    value={formData.firstname}
-                    onChange={handleChange}
-                    id="prefix"
-                    className={`form-select ${errors.firstname ? 'is-invalid' : ''}`}>
-                    <option value="">Choose...</option>
-                    <option value="นาย">นาย</option>
-                    <option value="นางสาว">นางสาว</option>
-                    <option value="นาง">นาง</option>
-                  </select>
-                  {errors.firstname && <div className="invalid-feedback">{errors.firstname}</div>}
-                </div>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-10 col-xl-8">
+            <div className={styles['register-card']}>
+              {/* Header Section */}
+              <div className={styles['register-header']}>
+              
+                <h1 className={styles['register-title']}>Register</h1>
+              </div>
 
-                <div className="col-md-6">
-                  <label htmlFor="nickname" className="form-label">ชื่อเล่น</label>
-                  <input
-                    type="text"
-                    className={`form-control ${errors.username ? 'is-invalid' : ''}`}
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    id="nickname"
-                  />
-                  {errors.username && <div className="invalid-feedback">{errors.username}</div>}
-                </div>
-
-                <div className="col-md-6">
-                  <label htmlFor="firstName" className="form-label">ชื่อ</label>
-                  <input
-                    type="text"
-                    className={`form-control ${errors.fullname ? 'is-invalid' : ''}`}
-                    name="fullname"
-                    value={formData.fullname}
-                    onChange={handleChange}
-                    id="firstName"
-                  />
-                  {errors.fullname && <div className="invalid-feedback">{errors.fullname}</div>}
-                </div>
-
-                <div className="col-md-6">
-                  <label htmlFor="lastName" className="form-label">นามสกุล</label>
-                  <input
-                    type="text"
-                    className={`form-control ${errors.lastname ? 'is-invalid' : ''}`}
-                    name="lastname"
-                    value={formData.lastname}
-                    onChange={handleChange}
-                    id="lastName"
-                  />
-                  {errors.lastname && <div className="invalid-feedback">{errors.lastname}</div>}
-                </div>
-
-                <div className="col-md-6">
-                  <label className="form-label">เพศ</label>
-                  <div>
-                    <div className="form-check form-check-inline">
-                      <input
-                        className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
-                        type="radio"
-                        name="sex"
-                        id="male"
-                        value="ชาย"
-                        onChange={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="male">ชาย</label>
+              <form onSubmit={handleSubmit}>
+                {/* Personal Information Section */}
+                <div className={styles['form-section']}>
+                  <h3 className={styles['section-title']}>
+                    <i className="bi bi-person-circle"></i>
+                    Personal Information
+                  </h3>
+                  
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="prefix" className={styles['form-label']}>คำนำหน้าชื่อ</label>
+                        <select
+                          name="firstname"
+                          value={formData.firstname}
+                          onChange={handleChange}
+                          id="prefix"
+                          className={`${styles['form-select']} ${errors.firstname ? styles['is-invalid'] : ''}`}>
+                          <option value="">Choose...</option>
+                          <option value="นาย">นาย</option>
+                          <option value="นางสาว">นางสาว</option>
+                          <option value="นาง">นาง</option>
+                        </select>
+                        {errors.firstname && <div className={styles['invalid-feedback']}>{errors.firstname}</div>}
+                      </div>
                     </div>
-                    <div className="form-check form-check-inline">
-                      <input
-                        className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
-                        type="radio"
-                        name="sex"
-                        id="female"
-                        value="หญิง"
-                        onChange={handleChange}
-                      />
-                      <label className="form-check-label" htmlFor="female">หญิง</label>
+
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="nickname" className={styles['form-label']}>ชื่อเล่น</label>
+                        <input
+                          type="text"
+                          className={`${styles['form-control']} ${errors.username ? styles['is-invalid'] : ''}`}
+                          name="username"
+                          value={formData.username}
+                          onChange={handleChange}
+                          id="nickname"
+                        />
+                        {errors.username && <div className={styles['invalid-feedback']}>{errors.username}</div>}
+                      </div>
                     </div>
-                  </div>
-                  {errors.sex && <div className="invalid-feedback d-block">{errors.sex}</div>}
-                </div>
 
-                <div className="col-md-6">
-                  <label htmlFor="email" className="form-label">Email</label>
-                  <input
-                    type="email"
-                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    id="email"
-                  />
-                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-                </div>
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="firstName" className={styles['form-label']}>ชื่อ</label>
+                        <input
+                          type="text"
+                          className={`${styles['form-control']} ${errors.fullname ? styles['is-invalid'] : ''}`}
+                          name="fullname"
+                          value={formData.fullname}
+                          onChange={handleChange}
+                          id="firstName"
+                        />
+                        {errors.fullname && <div className={styles['invalid-feedback']}>{errors.fullname}</div>}
+                      </div>
+                    </div>
 
-                <div className="col-md-6">
-                  <label htmlFor="inputPassword" className="form-label">Password</label>
-                  <input
-                    type="password"
-                    className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    id="inputPassword"
-                  />
-                  {errors.password && <div className="invalid-feedback">{errors.password}</div>}
-                </div>
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="lastName" className={styles['form-label']}>นามสกุล</label>
+                        <input
+                          type="text"
+                          className={`${styles['form-control']} ${errors.lastname ? styles['is-invalid'] : ''}`}
+                          name="lastname"
+                          value={formData.lastname}
+                          onChange={handleChange}
+                          id="lastName"
+                        />
+                        {errors.lastname && <div className={styles['invalid-feedback']}>{errors.lastname}</div>}
+                      </div>
+                    </div>
 
-                <div className="col-md-6">
-                  <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-                  <input
-                    type="password"
-                    className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    id="confirmPassword"
-                  />
-                  {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
-                </div>
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label className={styles['form-label']}>เพศ</label>
+                        <div>
+                          <div className={styles['form-check-inline']}>
+                            <input
+                              className={`${styles['form-check-input']} ${errors.sex ? styles['is-invalid'] : ''}`}
+                              type="radio"
+                              name="sex"
+                              id="male"
+                              value="ชาย"
+                              onChange={handleChange}
+                            />
+                            <label className={styles['form-check-label']} htmlFor="male">ชาย</label>
+                          </div>
+                          <div className={styles['form-check-inline']}>
+                            <input
+                              className={`${styles['form-check-input']} ${errors.sex ? styles['is-invalid'] : ''}`}
+                              type="radio"
+                              name="sex"
+                              id="female"
+                              value="หญิง"
+                              onChange={handleChange}
+                            />
+                            <label className={styles['form-check-label']} htmlFor="female">หญิง</label>
+                          </div>
+                        </div>
+                        {errors.sex && <div className={styles['invalid-feedback']}>{errors.sex}</div>}
+                      </div>
+                    </div>
 
-                <div className="col-12">
-                  <label htmlFor="inputAddress" className="form-label">Address</label>
-                  <textarea
-                    className={`form-control ${errors.address ? 'is-invalid' : ''}`}
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    id="inputAddress"
-                  />
-                  {errors.address && <div className="invalid-feedback">{errors.address}</div>}
-                </div>
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="email" className={styles['form-label']}>Email</label>
+                        <input
+                          type="email"
+                          className={`${styles['form-control']} ${errors.email ? styles['is-invalid'] : ''}`}
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          id="email"
+                        />
+                        {errors.email && <div className={styles['invalid-feedback']}>{errors.email}</div>}
+                      </div>
+                    </div>
 
-                <div className="col-md-6">
-                  <label htmlFor="inputCity" className="form-label">City</label>
-                  <input
-                    type="text"
-                    className={`form-control ${errors.city ? 'is-invalid' : ''}`}
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                    id="inputCity"
-                  />
-                  {errors.city && <div className="invalid-feedback">{errors.city}</div>}
-                </div>
-
-                <div className="col-md-4">
-                  <label htmlFor="inputState" className="form-label">Province</label>
-                  <select
-                    id="inputState"
-                    name="province"
-                    className={`form-select ${errors.province ? 'is-invalid' : ''}`}
-                    value={formData.province}
-                    onChange={handleChange}>
-                    <option value="">Choose...</option>
-                    <option value="BKK">Bangkok</option>
-                    <option value="CPN">Chonburi</option>
-                    <option value="CNG">Chiang Mai</option>
-                    <option value="PKT">Phuket</option>
-                  </select>
-                  {errors.province && <div className="invalid-feedback">{errors.province}</div>}
-                </div>
-
-                <div className="col-md-2">
-                  <label htmlFor="inputZip" className="form-label">Zip</label>
-                  <input
-                    type="text"
-                    className={`form-control ${errors.zip ? 'is-invalid' : ''}`}
-                    name="zip"
-                    value={formData.zip}
-                    onChange={handleChange}
-                    id="inputZip"
-                  />
-                  {errors.zip && <div className="invalid-feedback">{errors.zip}</div>}
-                </div>
-
-                <div className="col-md-6">
-                  <label htmlFor="inputDate" className="form-label">Date of Birth</label>
-                  <input
-                    type="date"
-                    className={`form-control ${errors.birthday ? 'is-invalid' : ''}`}
-                    id="inputDate"
-                    name="birthday"
-                    value={formData.birthday}
-                    onChange={handleChange}
-                  />
-                  {errors.birthday && <div className="invalid-feedback">{errors.birthday}</div>}
-                </div>
-
-                <div className="col-12">
-                  <div className="form-check">
-                    <input
-                      className={`form-check-input ${errors.acceptTerms ? 'is-invalid' : ''}`}
-                      type="checkbox"
-                      id="gridCheck"
-                      name="acceptTerms"
-                      checked={formData.acceptTerms}
-                      onChange={handleChange}
-                    />
-                    <label className="form-check-label" htmlFor="gridCheck">
-                      Accept terms and conditions
-                    </label>
-                    {errors.acceptTerms && <div className="invalid-feedback d-block">{errors.acceptTerms}</div>}
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="inputDate" className={styles['form-label']}>Date of Birth</label>
+                        <input
+                          type="date"
+                          className={`${styles['form-control']} ${errors.birthday ? styles['is-invalid'] : ''}`}
+                          id="inputDate"
+                          name="birthday"
+                          value={formData.birthday}
+                          onChange={handleChange}
+                        />
+                        {errors.birthday && <div className={styles['invalid-feedback']}>{errors.birthday}</div>}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="col-12 d-grid gap-2">
-                  <button type="submit" className="btn btn-primary">Register</button>
+                {/* Account Security Section */}
+                <div className={styles['form-section']}>
+                  <h3 className={styles['section-title']}>
+                    <i className="bi bi-shield-lock"></i>
+                    Account Security
+                  </h3>
+                  
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="inputPassword" className={styles['form-label']}>Password</label>
+                        <input
+                          type="password"
+                          className={`${styles['form-control']} ${errors.password ? styles['is-invalid'] : ''}`}
+                          name="password"
+                          value={formData.password}
+                          onChange={handleChange}
+                          id="inputPassword"
+                        />
+                        {errors.password && <div className={styles['invalid-feedback']}>{errors.password}</div>}
+                      </div>
+                    </div>
+
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="confirmPassword" className={styles['form-label']}>Confirm Password</label>
+                        <input
+                          type="password"
+                          className={`${styles['form-control']} ${errors.confirmPassword ? styles['is-invalid'] : ''}`}
+                          name="confirmPassword"
+                          value={formData.confirmPassword}
+                          onChange={handleChange}
+                          id="confirmPassword"
+                        />
+                        {errors.confirmPassword && <div className={styles['invalid-feedback']}>{errors.confirmPassword}</div>}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Address Section */}
+                <div className={styles['form-section']}>
+                  <h3 className={styles['section-title']}>
+                    <i className="bi bi-geo-alt"></i>
+                    Address Information
+                  </h3>
+                  
+                  <div className="row">
+                    <div className="col-12">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="inputAddress" className={styles['form-label']}>Address</label>
+                        <textarea
+                          className={`${styles['form-control']} ${errors.address ? styles['is-invalid'] : ''}`}
+                          name="address"
+                          value={formData.address}
+                          onChange={handleChange}
+                          id="inputAddress"
+                          rows="3"
+                        />
+                        {errors.address && <div className={styles['invalid-feedback']}>{errors.address}</div>}
+                      </div>
+                    </div>
+
+                    <div className="col-md-6">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="inputCity" className={styles['form-label']}>City</label>
+                        <input
+                          type="text"
+                          className={`${styles['form-control']} ${errors.city ? styles['is-invalid'] : ''}`}
+                          name="city"
+                          value={formData.city}
+                          onChange={handleChange}
+                          id="inputCity"
+                        />
+                        {errors.city && <div className={styles['invalid-feedback']}>{errors.city}</div>}
+                      </div>
+                    </div>
+
+                    <div className="col-md-4">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="inputState" className={styles['form-label']}>Province</label>
+                        <select
+                          id="inputState"
+                          name="province"
+                          className={`${styles['form-select']} ${errors.province ? styles['is-invalid'] : ''}`}
+                          value={formData.province}
+                          onChange={handleChange}>
+                          <option value="">Choose...</option>
+                          <option value="BKK">Bangkok</option>
+                          <option value="CPN">Chonburi</option>
+                          <option value="CNG">Chiang Mai</option>
+                          <option value="PKT">Phuket</option>
+                        </select>
+                        {errors.province && <div className={styles['invalid-feedback']}>{errors.province}</div>}
+                      </div>
+                    </div>
+
+                    <div className="col-md-2">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="inputZip" className={styles['form-label']}>Zip</label>
+                        <input
+                          type="text"
+                          className={`${styles['form-control']} ${errors.zip ? styles['is-invalid'] : ''}`}
+                          name="zip"
+                          value={formData.zip}
+                          onChange={handleChange}
+                          id="inputZip"
+                        />
+                        {errors.zip && <div className={styles['invalid-feedback']}>{errors.zip}</div>}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Terms and Conditions */}
+                <div className={styles['form-check']}>
+                  <input
+                    className={`${styles['form-check-input']} ${errors.acceptTerms ? styles['is-invalid'] : ''}`}
+                    type="checkbox"
+                    id="gridCheck"
+                    name="acceptTerms"
+                    checked={formData.acceptTerms}
+                    onChange={handleChange}
+                  />
+                  <label className={styles['form-check-label']} htmlFor="gridCheck">
+                    I accept the terms and conditions
+                  </label>
+                  {errors.acceptTerms && <div className={styles['invalid-feedback']}>{errors.acceptTerms}</div>}
+                </div>
+
+                {/* Submit Button */}
+                <div className="d-grid gap-2">
+                  <button type="submit" className={styles['btn-primary']}>
+                    <i className="bi bi-person-plus me-2"></i>
+                    Create Account
+                  </button>
                 </div>
               </form>
 
-              <p className="text-center mt-3">
-                Already have an account? <Link href="/login">Login here</Link>
-              </p>
+              {/* Login Link */}
+              <div className={styles['login-text']}>
+                Already have an account? 
+                <Link href="/login" className={styles['login-link']}>
+                  Login here
+                </Link>
+              </div>
+
+              {/* Decorative Elements */}
+              <div className={styles['decorative-elements']}>
+                <div className={styles['decoration-circle']}></div>
+                <div className={styles['decoration-circle']}></div>
+                <div className={styles['decoration-line']}></div>
+              </div>
             </div>
           </div>
         </div>

@@ -71,7 +71,7 @@ export default function Page() {
   }
 
   return (
-    <div className="max-w-lg mx-auto mt-12 p-6 bg-white rounded-3xl shadow-2xl border border-gray-200">
+    <div className="max-w-lg mx-auto mt-12 p-6 bg-white rounded-3xl shadow-2xl border border-white-200 border border-rounded-lg">
       <h1 className="text-2xl font-extrabold text-center text-blue-700 mb-6 tracking-wide">
         แก้ไขข้อมูลสมาชิก <span className="text-yellow-500">#{id}</span>
       </h1>

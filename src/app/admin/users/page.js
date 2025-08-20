@@ -1,33 +1,40 @@
 'use client';
 import Link from 'next/link'
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation'
 import Swal from 'sweetalert2';
 
-export default function Page() {
+export default function User() {
   const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  async function getUsers() {
-    try {
-      // Fetching directly from the external API
-      const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users');
-      if (!res.ok) {
-        console.error('Failed to fetch data');
-        setIsLoading(false);
-        return;
-      }
-      const data = await res.json();
-      setItems(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  const [loading, setLoading] = useState(true); // <-- เพิ่ม state loading
+  const router = useRouter();
 
   useEffect(() => {
-    // Removed login check, just fetch users
+    const token = localStorage.getItem('token');
+    if (!token) {
+      router.push('/signin');
+      return;
+    }
+
+    async function getUsers() {
+      try {
+        const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users');
+        if (!res.ok) {
+          console.error('Failed to fetch data');
+          return;
+        }
+        const data = await res.json();
+        setItems(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    }
+
     getUsers();
+    const interval = setInterval(getUsers, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleDelete = async (id) => {
@@ -53,7 +60,12 @@ export default function Page() {
               'The user has been deleted.',
               'success'
             )
-            getUsers(); // Refresh the user list
+            // Refresh the user list by fetching again
+            const res = await fetch('http://itdev.cmtc.ac.th:3000/api/users');
+            if (res.ok) {
+              const data = await res.json();
+              setItems(data);
+            }
           } else {
             const errorData = await res.json();
             Swal.fire(
@@ -74,6 +86,10 @@ export default function Page() {
     });
   };
 
+   if (loading) {
+  return <div className='text-center'><h1>Loading...</h1></div>; // หรือ return null เพื่อไม่ให้ render อะไร
+}
+
   return (
     <>
     <br /><br /><br /><br />
@@ -83,7 +99,7 @@ export default function Page() {
           Users List
         </div>
         <div className="card-body">
-          {isLoading ? (
+          {loading ? (
             <div className="text-center">
               <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>

@@ -22,7 +22,6 @@ export default function Navigation() {
   };
 
   useEffect(() => {
-    // Close navbar on route change
     const handleRouteChange = () => {
       closeNavbar();
     };
@@ -98,12 +97,12 @@ export default function Navigation() {
           </ul>
 
           
-          <form className="d-flex ms-auto p-2" role="search">
-  <input className="form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" />
-  <button className="btn btn-outline-light rounded-pill" type="submit">Search</button>
+          <form className="d-flex ms-auto py-2" role="search">
+  <input className="flex form-control rounded-pill me-2" type="search" placeholder="Search" aria-label="Search" />
+  <button className="btn btn-outline-light rounded-pill " type="submit">Search</button>
 </form>
 
-          <li className="btn btn-outline-light rounded-pill">
+          <li className="btn btn-outline-light rounded-pill ms-2">
               <Link className="nav-link" href="/login" onClick={closeNavbar}>
                 <i className="bi bi-person-plus"></i> Register/Login
               </Link>

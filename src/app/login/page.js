@@ -1,88 +1,135 @@
-'use client';
-import Link from 'next/link';
+'use client'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Swal from 'sweetalert2';
+import Link from 'next/link'
+import Swal from 'sweetalert2'
+import styles from './login.module.css'
 
 export default function Login() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  const validate = () => {
-    const newErrors = {};
-    if (!email) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Email is invalid';
-    }
-    if (!password) newErrors.password = 'Password is required';
-    return newErrors;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = validate();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-    setErrors({});
-    // Mock login logic
-    Swal.fire({
-        icon: 'success',
-        title: 'Login Successful!',
-        showConfirmButton: false,
-        timer: 1500
+
+    const res = await fetch('http://itdev.cmtc.ac.th:3000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
     });
-    router.push('/');
+
+    const data = await res.json();
+    console.log(username);
+
+    if (data.token) {
+      localStorage.setItem('token', data.token);
+      Swal.fire({
+        icon: 'success',
+        title: '<h3>Login Successfuly!</h3>',
+        showConfirmButton: false,
+        timer: 2000
+        }).then(function () {
+        //router.push('/admin/users');
+        window.location.href = "/admin/users";
+      });
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: '<h3>Login Failed!</h3>',
+        showConfirmButton: false,
+        timer: 2000
+        }).then(function () {
+          router.push('/login');
+      });
+    }
   };
 
   return (
-    <div className="container my-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow-sm" style={{ borderRadius: '1rem' }}>
-            <div className="card-body p-4">
-              <h1 className="card-title text-center mb-4 display-4">Login</h1>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="inputEmail3" className="form-label">Email</label>
-                  <input
-                    type="email"
-                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                    id="inputEmail3"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+    <div className={styles['login-container']}>
+      {/* Animated Background */}
+      
+
+      <div className="container">
+        <div className="row justify-content-center align-items-center min-vh-100">
+          <div className="col-md-6 col-lg-5">
+            <div className={styles['login-card']}>
+              {/* Header Section */}
+              <div className={styles['login-header']}>
+                
+                <h1 className={styles['login-title']}>Sign in</h1>
+              </div>
+
+              {/* Form Section */}
+              <form className={styles['login-form']} onSubmit={handleSubmit}>
+                <div className={styles['form-group']}>
+                  <div className={styles['input-wrapper']}>
+                    <i className={`bi bi-person ${styles['input-icon']}`}></i>
+                    <input
+                      type="text"
+                      className={`${styles['form-input']} ${errors.username ? styles.error : ''}`}
+                      placeholder="Enter your username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
+                  </div>
+                  {errors.username && <div className={styles['error-message']}>{errors.username}</div>}
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="inputPassword3" className="form-label">Password</label>
-                  <input
-                    type="password"
-                    className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                    id="inputPassword3"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  {errors.password && <div className="invalid-feedback">{errors.password}</div>}
-                  <div className="text-end mt-1">
-                    <Link href="/forgot-password" className="text-muted text-decoration-none">Forgot password?</Link>
+
+                <div className={styles['form-group']}>
+                  <div className={styles['input-wrapper']}>
+                    <i className={`bi bi-lock ${styles['input-icon']}`}></i>
+                    <input
+                      type="password"
+                      className={`${styles['form-input']} ${errors.password ? styles.error : ''}`}
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  {errors.password && <div className={styles['error-message']}>{errors.password}</div>}
+                  <div className={styles['forgot-password']}>
+                    <Link href="/forgot-password" className={styles['forgot-link']}>
+                      <i className="bi bi-question-circle"></i>
+                      Forgot password?
+                    </Link>
                   </div>
                 </div>
-                <div className="mb-3 form-check">
-                  <input type="checkbox" className="form-check-input" id="gridCheck" />
-                  <label className="form-check-label" htmlFor="gridCheck">Remember me</label>
+
+                <div className={styles['form-group']}>
+                  <label className={styles['checkbox-wrapper']}>
+                    <input type="checkbox" className={styles['checkbox-input']} />
+                    <span className={styles['checkbox-custom']}></span>
+                    <span className={styles['checkbox-label']}>Remember me</span>
+                  </label>
                 </div>
-                <div className="d-grid gap-2">
-                  <button type="submit" className="btn btn-primary">Sign in</button>
-                </div>
+
+                <button type="submit" className={styles['login-button']}>
+                  <i className="bi bi-box-arrow-in-right"></i>
+                  Sign In
+                </button>
               </form>
-              <p className="text-center mt-3">
-                Don&apos;t have an account? <Link href="/register">Register here</Link>
-              </p>
+
+              {/* Footer Section */}
+              <div className={styles['login-footer']}>
+                <p className={styles['register-text']}>
+                  Don't have an account? 
+                  <Link href="/register" className={styles['register-link']}>
+                    <i className="bi bi-person-plus"></i>
+                    Register here
+                  </Link>
+                </p>
+              </div>
+
+              {/* Decorative Elements */}
+              <div className={styles['decorative-elements']}>
+                <div className={styles['decoration-circle']}></div>
+                <div className={styles['decoration-circle']}></div>
+                <div className={styles['decoration-line']}></div>
+              </div>
             </div>
           </div>
         </div>
