@@ -47,7 +47,7 @@ export default function Page() {
       getUsers();
       //const interval  = setInterval(getUsers, 1000);
       //return () => clearInterval(interval);
-    }, []);
+    }, [id]);
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();

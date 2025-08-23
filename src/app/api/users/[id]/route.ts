@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const token = request.headers.get('Authorization');
     
-    console.log('Fetching user with ID:', params.id);
+    console.log('Fetching user with ID:', id);
     console.log('Token:', token ? 'Present' : 'Missing');
 
-    const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${params.id}`, {
+    const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token || '',
@@ -36,16 +37,17 @@ export async function GET(request: Request, { params }: { params: { id: string }
   }
 }
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const token = request.headers.get('Authorization');
 
-    console.log('Updating user with ID:', params.id);
+    console.log('Updating user with ID:', id);
     console.log('Request body:', body);
     console.log('Token:', token ? 'Present' : 'Missing');
 
-    const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${params.id}`, {
+    const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -85,9 +87,10 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${params.id}`, {
+    const { id } = await params;
+    const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
