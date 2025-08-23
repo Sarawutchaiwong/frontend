@@ -153,19 +153,7 @@ export default function Navigation() {
             {isLoggedIn ? (
               <>
                 {/* Session Timer Display */}
-                <div className="d-flex align-items-center me-3">
-                  <div className={`me-2 ${timeLeft <= 300 ? 'text-warning fw-bold' : 'text-white'}`}>
-                    <small>Session: {formatTime(timeLeft)}</small>
-                  </div>
-                  <button 
-                    className={`btn btn-sm me-2 ${timeLeft <= 300 ? 'btn-warning' : 'btn-outline-warning'}`}
-                    onClick={handleExtendSession}
-                    title="Extend Session"
-                  >
-                    <i className="bi bi-clock"></i>
-                  </button>
-                  <SessionSettings onTimeoutChange={setTimeoutMinutes} />
-                </div>
+                
                 <button className="btn btn-outline-light rounded-pill" onClick={handleLogout}>
                   Logout
                 </button>
