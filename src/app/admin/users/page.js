@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import styles from './users.module.css';
+import Image from 'next/image';
 
 export default function User() {
   const [items, setItems] = useState([]);
@@ -19,29 +21,26 @@ export default function User() {
 
     async function getUsers() {
       try {
-        const res = await fetch('/api/proxy/users', {
+        const res = await fetch('/api/users', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
         });
         if (!res.ok) {
           console.error('Failed to fetch data');
-          setLoading(false); // Stop loading on error
+    
           return;
         }
         const data = await res.json();
         setItems(data);
-        setLoading(false);
+    
       } catch (error) {
         console.error('Error fetching data:', error);
-        setLoading(false);
+ 
       }
     }
 
     getUsers();
-    // No interval fetching for now to avoid excessive API calls during debugging
-    // const interval = setInterval(getUsers, 5000);
-    // return () => clearInterval(interval);
   }, [router]);
 
   const handleDelete = async (id) => {
@@ -54,10 +53,12 @@ export default function User() {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
+      background: '#1e1e1e',
+      color: '#fff'
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await fetch(`/api/proxy/users/${id}`, {
+          const res = await fetch(`/api/users/${id}`, {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -86,68 +87,64 @@ export default function User() {
       (item.username && item.username.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
-  if (loading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center vh-100">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="container mt-5">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h1 className="mb-0">Users List</h1>
+    <div className={`container mt-5 text-white ${styles.userTableContainer}`}>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1 className={styles.title}>Users Management</h1>
+        
       </div>
-      <div className="mb-3">
+      <div className="mb-4">
         <input
           type="text"
-          className="form-control"
-          placeholder="Search users..."
+          className={`form-control ${styles.searchInput}`}
+          placeholder="Search by name or username..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      <div className="card shadow-sm">
-        <div className="card-body">
-          <div className="table-responsive">
-            <table className="table table-striped table-hover align-middle">
-              <thead className="table-dark">
-                <tr>
-                  <th className="text-center">#</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-                  <th className="text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredItems.map((item) => (
-                  <tr key={item.id}>
-                    <td className="text-center">{item.id}</td>
-                    <td>{item.firstname}</td>
-                    <td>{item.lastname}</td>
-                    <td>{item.username}</td>
-                    <td className="text-center">
-                      <Link href={`/admin/users/edit/${item.id}`} className="btn btn-sm btn-outline-warning me-2">
-                        Edit
-                      </Link>
-                      <button
-                        className="btn btn-sm btn-outline-danger"
-                        type="button"
-                        onClick={() => handleDelete(item.id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div className="table-responsive">
+        <table className={`table align-middle ${styles.table}`}>
+          <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Username</th>
+              <th scope="col" className="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredItems.map((item) => (
+              <tr key={item.id}>
+                <td>
+                  <div className="d-flex align-items-center">
+                    <Image 
+                      src={item.avatar || '/images/roblox2.png'} 
+                      alt={`${item.firstname} ${item.lastname}`} 
+                      width={45} 
+                      height={45} 
+                      className={styles.userAvatar}
+                    />
+                    <div>
+                      <div className="fw-bold">{`${item.firstname} ${item.lastname}`}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>{item.username}</td>
+                <td className="text-center">
+                  <Link href={`/admin/users/edit/${item.id}`} className="btn btn-sm btn-outline-primary me-2">
+                    Edit
+                  </Link>
+                  <button
+                    className="btn btn-sm btn-outline-danger"
+                    type="button"
+                    onClick={() => handleDelete(item.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -25,11 +25,11 @@ const kanit = Kanit({ subsets: ["latin"], weight: ["400", "700"] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={kanit.className}>
+      <body className={kanit.className} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <video autoPlay muted loop className="background-video">
           <source src="/video/bg.mp4" type="video/mp4" />
         </video>
-        <div className="container-fluid pt-3">
+        <div className="container-fluid pt-3" style={{ flex: '1 0 auto' }}>
           <div className="row">
             <div className="col-12 p-2">
               <Navigation />

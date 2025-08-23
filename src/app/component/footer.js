@@ -4,7 +4,15 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="py-5 mt-5 shadow-sm" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)', color: 'white' }}>
+    <footer className="py-5 mt-5 shadow-lg" style={{ 
+      backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+      color: 'white', 
+      flexShrink: 0,
+      borderRadius: '20px 20px 0 0',
+      margin: '0 25px 0 25px',
+      backdropFilter: 'blur(10px)',
+      border: '1px solid rgba(255, 255, 255, 0.1)'
+    }}>
       <div className="container">
         <div className="row">
           <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
@@ -58,7 +66,7 @@ export default function Footer() {
             <form action="#">
               <div className="input-group">
                 <input type="email" placeholder="Your email" aria-label="Your email" className="form-control" />
-                <button className="btn btn-primary" type="submit">Subscribe</button>
+                <button className="btn btn-light" type="submit">Subscribe</button>
               </div>
             </form>
           </div>
