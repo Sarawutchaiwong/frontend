@@ -1,295 +1,110 @@
-.aboutPage {
-  padding: 4rem 2rem;
-  color: #000000;
+.heroSection, .timelineContent, .teamCard {
+  background: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  color: white; /* Ensure text is readable */
+  border-radius: 0.75rem; /* Bootstrap's .rounded-3 */
 }
 
-.hero {
-  text-align: center;
-  margin-bottom: 4rem;
+.heroSection h1,
+.heroSection p {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.hero h1 {
-  font-size: 3.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.teamCard {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hero p {
-  font-size: 1.25rem;
-  max-width: 600px;
-  margin: 0 auto;
+.teamCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
+/* Timeline Specific Styles */
 .timeline {
   position: relative;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 0;
 }
 
-.timeline::before {
+/* The vertical line */
+.timeline::after {
   content: '';
   position: absolute;
+  width: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
   top: 0;
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 100%;
-  background-color: #444;
+  margin-left: -1.5px;
+  border-radius: 3px;
 }
 
 .timelineItem {
+  padding: 10px 40px;
   position: relative;
   width: 50%;
-  padding: 1rem 2rem;
-  margin-bottom: 2rem;
 }
 
-.timelineItem:nth-child(odd) {
-  left: 0;
-  padding-right: 4rem;
-  text-align: right;
-}
-
-.timelineItem:nth-child(even) {
-  left: 50%;
-  padding-left: 4rem;
-}
-
-.timelineIcon {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #00aaff;
-}
-
-.timelineContent {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.team {
-  text-align: center;
-  padding: 4rem 0;
-}
-
-.team h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-}
-
-.teamGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.teamMember {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.teamMember:hover {
-  transform: translateY(-10px);
-}
-
-.aboutPage {
-  padding: 4rem 2rem;
-  color: #000000;
-}
-
-.hero {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.25rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.timeline::before {
+/* The circle on the timeline */
+.timelineItem::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 100%;
-  background-color: #444;
+  width: 20px;
+  height: 20px;
+  right: -10px;
+  background-color: white;
+  border: 4px solid #0d6efd; /* Bootstrap primary color */
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
 }
 
-.timelineItem {
-  position: relative;
-  width: 50%;
-  padding: 1rem 2rem;
-  margin-bottom: 2rem;
-}
-
-.timelineItem:nth-child(odd) {
+.left {
   left: 0;
-  padding-right: 4rem;
   text-align: right;
 }
 
-.timelineItem:nth-child(even) {
+.right {
   left: 50%;
-  padding-left: 4rem;
+  text-align: left;
 }
 
-.timelineIcon {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #00aaff;
+/* Fix the circle for right-sided items */
+.right::after {
+  left: -10px;
 }
 
 .timelineContent {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+  position: relative;
 }
 
-.team {
-  text-align: center;
-  padding: 4rem 0;
-}
-
-.team h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-}
-
-.teamGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.teamMember {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.teamMember:hover {
-  transform: translateY(-10px);
-}
-
-.teamMember img {
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .timeline::before {
-    left: 20px;
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 31px;
   }
 
   .timelineItem {
     width: 100%;
-    padding: 1rem 1rem 1rem 40px;
-    margin-bottom: 1.5rem;
+    padding-left: 70px;
+    padding-right: 25px;
   }
 
-  .timelineItem:nth-child(odd),
-  .timelineItem:nth-child(even) {
+  .timelineItem.left, .timelineItem.right {
     left: 0;
     text-align: left;
-    padding-right: 1rem;
   }
 
-  .timelineIcon {
-    left: 20px;
-    transform: translateX(-50%);
+  .timelineItem::after {
+    left: 15px;
+    right: auto;
   }
 
-  .team h2 {
-    font-size: 2rem;
-  }
-
-  .teamGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .aboutPage {
-    padding: 2rem 1rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 0.9rem;
-  }
-
-  .timelineItem {
-    padding: 0.8rem 0.8rem 0.8rem 35px;
-  }
-
-  .timelineIcon {
-    width: 8px;
-    height: 8px;
-    border: 3px solid #00aaff;
-  }
-
-  .timelineContent {
-    padding: 1rem;
-  }
-
-  .team h2 {
-    font-size: 1.8rem;
-  }
-
-  .teamMember {
-    padding: 1.5rem;
-  }
-
-  .teamMember img {
-    width: 100px;
-    height: 100px;
+  .right::after {
+    left: 15px;
   }
 }

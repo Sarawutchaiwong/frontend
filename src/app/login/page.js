@@ -60,7 +60,7 @@ export default function Login() {
               {/* Header Section */}
               <div className={styles['login-header']}>
                 
-                <h1 className={styles['login-title']}>Sign in</h1>
+                <h1 className={styles['login-title']}>Login</h1>
               </div>
 
               {/* Form Section */}

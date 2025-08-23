@@ -1,58 +1,58 @@
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
+
 import styles from './service.module.css';
+import ServiceSlider from '../component/ServiceSlider';
+
+const services = [
+  {
+    imgSrc: "/images/service1.png",
+    title: "Real-time Updates",
+    description: "Get instant access to current weather conditions, temperature, humidity, and wind speed for any location.",
+    details: "Our real-time updates are sourced from multiple high-resolution weather models, ensuring you get the most accurate and up-to-the-minute information available. Pinpoint your location for hyper-local data."
+  },
+  {
+    imgSrc: "/images/service2.png",
+    title: "Hourly Forecasts",
+    description: "Plan your day with confidence using our detailed hourly forecasts, including precipitation chances and temperature changes.",
+    details: "Our hourly forecasts provide a granular look at the next 48 hours. Track temperature, wind, and precipitation probability with our easy-to-read charts and graphs."
+  },
+  {
+    imgSrc: "/images/service3.png",
+    title: "7-Day Outlook",
+    description: "Stay ahead of the weather with our reliable 7-day forecasts, helping you prepare for upcoming conditions.",
+    details: "Get a comprehensive overview of the week ahead. Our 7-day outlook includes daily high and low temperatures, weather conditions, and sunrise/sunset times."
+  },
+  {
+    imgSrc: "/images/service4.png",
+    title: "Severe Weather Alerts",
+    description: "Receive timely notifications for severe weather events, ensuring your safety and preparedness.",
+    details: "Our alert system is connected directly to national weather services. Receive push notifications for thunderstorms, tornadoes, hurricanes, and other severe weather warnings in your area."
+  },
+  {
+    imgSrc: "/images/service5.png",
+    title: "Interactive Maps",
+    description: "Explore weather patterns with our interactive radar and satellite maps, visualizing real-time data.",
+    details: "Our interactive maps allow you to visualize weather data in real-time. Layer radar, satellite, and temperature data to see the full picture. Animate past and future weather patterns."
+  },
+  {
+    imgSrc: "/images/service6.png",
+    title: "Historical Data",
+    description: "Access past weather information and trends for analysis, research, or simply to satisfy your curiosity.",
+    details: "Curious about the weather on a specific date? Access our extensive archive of historical weather data. Analyze trends, compare seasons, and explore weather history for any location."
+  },
+];
 
 export default function Service() {
   return (
-    <div className={styles.servicePage}>
-      <div className={styles.heroSection}>
-        <h1>Comprehensive Weather Services</h1>
-        <p>Your ultimate source for accurate and timely weather information, powered by advanced forecasting technology.</p>
+    <div className="container text-white py-5">
+      <div className={`text-center p-5 rounded-3 ${styles.heroSection}`}>
+        <h1 className="display-4 fw-bold">Comprehensive Weather Services</h1>
+        <p className="lead">
+          Your ultimate source for accurate and timely weather information, powered by advanced forecasting technology.
+        </p>
       </div>
 
-      <div className={styles.servicesSection}>
-        <div className={styles.serviceBlock}>
-          <Image src="/images/service1.png" alt="Real-time Updates" width={100} height={100} />
-          <h2>Real-time Updates</h2>
-          <p>Get instant access to current weather conditions, temperature, humidity, and wind speed for any location.</p>
-          <Link href="#" className={styles.readMore}>Learn More</Link>
-        </div>
-
-        <div className={styles.serviceBlock}>
-          <Image src="/images/service2.png" alt="Hourly Forecasts" width={100} height={100} />
-          <h2>Hourly Forecasts</h2>
-          <p>Plan your day with confidence using our detailed hourly forecasts, including precipitation chances and temperature changes.</p>
-          <Link href="#" className={styles.readMore}>Learn More</Link>
-        </div>
-
-        <div className={styles.serviceBlock}>
-          <Image src="/images/service3.png" alt="7-Day Outlook" width={100} height={100} />
-          <h2>7-Day Outlook</h2>
-          <p>Stay ahead of the weather with our reliable 7-day forecasts, helping you prepare for upcoming conditions.</p>
-          <Link href="#" className={styles.readMore}>Learn More</Link>
-        </div>
-
-        <div className={styles.serviceBlock}>
-          <Image src="/images/service4.png" alt="Severe Weather Alerts" width={100} height={100} />
-          <h2>Severe Weather Alerts</h2>
-          <p>Receive timely notifications for severe weather events, ensuring your safety and preparedness.</p>
-          <Link href="#" className={styles.readMore}>Learn More</Link>
-        </div>
-
-        <div className={styles.serviceBlock}>
-          <Image src="/images/service5.png" alt="Interactive Maps" width={100} height={100} />
-          <h2>Interactive Maps</h2>
-          <p>Explore weather patterns with our interactive radar and satellite maps, visualizing real-time data.</p>
-          <Link href="#" className={styles.readMore}>Learn More</Link>
-        </div>
-
-        <div className={styles.serviceBlock}>
-          <Image src="/images/service6.png" alt="Historical Data" width={100} height={100} />
-          <h2>Historical Data</h2>
-          <p>Access past weather information and trends for analysis, research, or simply to satisfy your curiosity.</p>
-          <Link href="#" className={styles.readMore}>Learn More</Link>
-        </div>
-      </div>
+      <ServiceSlider services={services} />
     </div>
   );
 }

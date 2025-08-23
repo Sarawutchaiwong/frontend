@@ -1,208 +1,93 @@
 
-
-.servicePage {
-  padding: 0;
-  color: #333;
-  font-family: 'Arial', sans-serif;
-}
-
 .heroSection {
-  padding: 120px 20px;
-  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.serviceCard {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.serviceCard:hover {
+  transform: translateY(-10px) rotateX(10deg) rotateY(5deg) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.serviceIcon {
+  filter: invert(1) grayscale(1) brightness(2);
+  transition: transform 0.4s ease;
+}
+
+.serviceCard:hover .serviceIcon {
+  transform: scale(1.2) translateZ(50px);
+}
+
+.cardInner {
   position: relative;
-}
-
-.heroSection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10;
-  right: 10;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.301);
-  border-radius: 15px;
-}
-
-.heroSection h1 {
-  font-size: 4.5rem;
-  margin-bottom: 20px;
-  color: #fff; /* White color for better contrast */
-  position: relative;
-  z-index: 1;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Stronger text shadow */
-}
-
-.heroSection p {
-  font-size: 1.4rem;
-  max-width: 800px;
-  margin: 0 auto;
-  color: #fff; /* White color for better contrast */
-  position: relative;
-  z-index: 1;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Stronger text shadow */
-}
-
-.servicesSection {
-  padding: 80px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  background-color: #ffffff00;
-}
-
-.serviceBlock {
-  background: #00000028;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  padding: 40px;
-  text-align: center;
-  max-width: 380px;
-  flex: 1 1 auto;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.serviceBlock::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, rgba(0,123,255,0), rgba(0,123,255,0));
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.cardFlipped .cardInner {
+  transform: rotateY(180deg);
+}
+
+.cardFront, .cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+}
+
+.btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.serviceCard {
+  animation: fadeIn 0.5s ease-out forwards;
   opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.serviceBlock:hover::before {
-  opacity: 1;
-}
-
-.serviceBlock:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
-
-.serviceBlock img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  margin-bottom: 30px;
-}
-
-.serviceBlock h2 {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
-  color: #ffffff;
-}
-
-.serviceBlock p {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: rgb(248, 248, 248)
-}
-
-.serviceBlock .readMore {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 12px 28px;
-  background-color: #ffffff;
-  color: #000000;
-  text-decoration: none;
-  border-radius: 30px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  font-weight: bold;
-}
-
-.serviceBlock .readMore:hover {
-  background-color: #000000;
-  transform: translateY(-3px);
-}
-
-@media (max-width: 768px) {
-  .heroSection {
-    padding: 80px 20px;
-  }
-
-  .heroSection h1 {
-    font-size: 3rem;
-  }
-
-  .heroSection p {
-    font-size: 1.2rem;
-  }
-
-  .servicesSection {
-    padding: 50px 15px;
-    gap: 20px;
-  }
-
-  .serviceBlock {
-    max-width: 100%;
-    padding: 30px;
-  }
-
-  .serviceBlock img {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 20px;
-  }
-
-  .serviceBlock h2 {
-    font-size: 1.8rem;
-  }
-
-  .serviceBlock p {
-    font-size: 1rem;
-  }
-
-  .serviceBlock .readMore {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .heroSection {
-    padding: 60px 15px;
-  }
-
-  .heroSection h1 {
-    font-size: 2.5rem;
-  }
-
-  .heroSection p {
-    font-size: 1rem;
-  }
-
-  .servicesSection {
-    padding: 30px 10px;
-    gap: 15px;
-  }
-
-  .serviceBlock {
-    padding: 20px;
-  }
-
-  .serviceBlock img {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 15px;
-  }
-
-  .serviceBlock h2 {
-    font-size: 1.5rem;
-  }
-
-  .serviceBlock p {
-    font-size: 0.9rem;
-  }
-
-  .serviceBlock .readMore {
-    padding: 8px 15px;
-    font-size: 0.8rem;
-  }
 }

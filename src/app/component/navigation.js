@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 export default function Navigation() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -125,7 +126,7 @@ export default function Navigation() {
           </ul>
           <div className="d-flex align-items-center ms-auto">
             {isLoggedIn ? (
-              <button className="btn btn-outline-danger btn-light rounded-pill" onClick={handleLogout}>
+              <button className="btn btn-outline-light rounded-pill" onClick={handleLogout}>
                 Logout
               </button>
             ) : (
