@@ -4,11 +4,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import { useAutoLogout } from '../hooks/useAutoLogout';
+import SessionSettings from './SessionSettings';
 
 export default function Navigation() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [timeoutMinutes, setTimeoutMinutes] = useState(30);
   const router = useRouter();
+  
+  // Auto logout hook - configurable timeout
+  const { timeLeft, formatTime, resetTimer } = useAutoLogout(timeoutMinutes);
 
   useEffect(() => {
     // Function to check token and update state
@@ -16,6 +22,12 @@ export default function Navigation() {
       const token = localStorage.getItem('token');
       setIsLoggedIn(!!token);
     };
+
+    // Load saved timeout from localStorage
+    const savedTimeout = localStorage.getItem('sessionTimeout');
+    if (savedTimeout) {
+      setTimeoutMinutes(parseInt(savedTimeout));
+    }
 
     // Check immediately on mount
     checkLoginStatus();
@@ -50,6 +62,19 @@ export default function Navigation() {
       timer: 1500
     }).then(() => {
       router.push('/login');
+    });
+  };
+
+  const handleExtendSession = () => {
+    resetTimer();
+    Swal.fire({
+      icon: 'success',
+      title: 'Session Extended',
+      text: 'Your session has been extended by 30 minutes.',
+      timer: 2000,
+      showConfirmButton: false,
+      background: '#1e1e1e',
+      color: '#fff'
     });
   };
 
@@ -126,9 +151,25 @@ export default function Navigation() {
           </ul>
           <div className="d-flex align-items-center ms-auto">
             {isLoggedIn ? (
-              <button className="btn btn-outline-light rounded-pill" onClick={handleLogout}>
-                Logout
-              </button>
+              <>
+                {/* Session Timer Display */}
+                <div className="d-flex align-items-center me-3">
+                  <div className={`me-2 ${timeLeft <= 300 ? 'text-warning fw-bold' : 'text-white'}`}>
+                    <small>Session: {formatTime(timeLeft)}</small>
+                  </div>
+                  <button 
+                    className={`btn btn-sm me-2 ${timeLeft <= 300 ? 'btn-warning' : 'btn-outline-warning'}`}
+                    onClick={handleExtendSession}
+                    title="Extend Session"
+                  >
+                    <i className="bi bi-clock"></i>
+                  </button>
+                  <SessionSettings onTimeoutChange={setTimeoutMinutes} />
+                </div>
+                <button className="btn btn-outline-light rounded-pill" onClick={handleLogout}>
+                  Logout
+                </button>
+              </>
             ) : (
               <>
                 <Link href="/login" className="btn btn-outline-light rounded-pill me-2" onClick={closeNavbar}>
