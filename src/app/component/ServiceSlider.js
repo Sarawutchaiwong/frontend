@@ -26,7 +26,7 @@ export default function ServiceSlider({ services }) {
           {services.map((service, index) => (
             <div key={index} className={styles.slide}>
               <div className={styles.slideImage}>
-                <Image src={service.imgSrc} alt={service.title} width={500} height={500} objectFit="cover" />
+                <Image src={service.imgSrc} alt={service.title} layout="responsive" width={500} height={300} objectFit="cover" />
               </div>
               <div className={styles.slideInfo}>
                 <h2 className={styles.slideTitle}>{service.title}</h2>

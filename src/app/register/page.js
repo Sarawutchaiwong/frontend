@@ -418,11 +418,7 @@ export default function Register() {
               </div>
 
               {/* Decorative Elements */}
-              <div className={styles['decorative-elements']}>
-                <div className={styles['decoration-circle']}></div>
-                <div className={styles['decoration-circle']}></div>
-                <div className={styles['decoration-line']}></div>
-              </div>
+              
             </div>
           </div>
         </div>
