@@ -446,3 +446,23 @@
     display: none;
   }
 }
+
+.eye-button {
+  background-color: transparent;
+  border: none;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+  border-radius: 0 12px 12px 0;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.eye-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #000;
+}
+
+.eye-button:focus {
+  outline: none;
+  box-shadow: none;
+}
