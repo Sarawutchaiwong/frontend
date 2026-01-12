@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     
-    const res = await fetch('https://backend-nextjs-virid.vercel.app/api/auth/login', {
+    const res = await fetch('https://backend-7tnx.vercel.app/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
