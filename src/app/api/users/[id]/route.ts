@@ -8,7 +8,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     console.log('Fetching user with ID:', id);
     console.log('Token:', token ? 'Present' : 'Missing');
 
-    const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${id}`, {
+    const res = await fetch(`https://backend-7tnx.vercel.app/api/users/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token || '',
@@ -47,7 +47,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     console.log('Request body:', body);
     console.log('Token:', token ? 'Present' : 'Missing');
 
-    const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${id}`, {
+    const res = await fetch(`https://backend-7tnx.vercel.app/api/users/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
 export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
-    const res = await fetch(`https://backend-nextjs-virid.vercel.app/api/users/${id}`, {
+    const res = await fetch(`https://backend-vert-eight-76.vercel.app/api/users/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

@@ -2,7 +2,7 @@
 
 export async function GET() {
   try {
-    const res = await fetch('https://backend-nextjs-virid.vercel.app/api/users', {
+    const res = await fetch('https://backend-7tnx.vercel.app/api/users', {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     
-    const res = await fetch('https://backend-nextjs-virid.vercel.app/api/users', {
+    const res = await fetch('https://backend-7tnx.vercel.app/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
