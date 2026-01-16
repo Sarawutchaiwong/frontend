@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 
@@ -11,7 +11,7 @@ export const useAutoLogout = (timeoutMinutes = 30) => {
   const warningTimeoutRef = useRef(null);
   const countdownRef = useRef(null);
 
-  const resetTimer = () => {
+  const resetTimer = useCallback(() => {
     setTimeLeft(timeoutMinutes * 60);
     setIsWarningShown(false);
     
@@ -43,7 +43,7 @@ export const useAutoLogout = (timeoutMinutes = 30) => {
     timeoutRef.current = setTimeout(() => {
       handleLogout();
     }, timeoutMinutes * 60 * 1000);
-  };
+  }, [handleLogout, setIsWarningShown, setTimeLeft, showWarning, timeoutMinutes, timeLeft, isWarningShown]);
 
   const showWarning = () => {
     setIsWarningShown(true);
