@@ -140,7 +140,7 @@ export const useAutoLogout = (timeoutMinutes = 30) => {
       if (warningTimeoutRef.current) clearTimeout(warningTimeoutRef.current);
       if (countdownRef.current) clearInterval(countdownRef.current);
     };
-  }, []);
+  }, [resetTimer]);
 
   return {
     timeLeft,
