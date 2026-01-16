@@ -146,6 +146,7 @@ export default function Register() {
                       </div>
                     </div>
                     <div className="col-md-6">
+                      
                       <div className={styles['form-group']}>
                         <label htmlFor="lastname" className={styles['form-label']}>นามสกุล</label>
                         <input
