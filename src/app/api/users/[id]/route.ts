@@ -6,7 +6,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     const token = request.headers.get('Authorization');
     
     console.log('Fetching user with ID:', id);
-    console.log('Token:', token ? 'Present' : 'Missing');
+
 
     const res = await fetch(`https://backend-7tnx.vercel.app/api/users/${id}`, {
       headers: {
@@ -16,16 +16,12 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       next: { revalidate: 0 },
     });
 
-    console.log('Backend response status:', res.status);
-
     if (!res.ok) {
       const errorData = await res.json().catch(() => ({}));
-      console.error('Backend error:', errorData);
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
     const data = await res.json();
-    console.log('User data fetched successfully');
     return NextResponse.json(data);
     
   } catch (error) {
@@ -43,10 +39,6 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     const body = await request.json();
     const token = request.headers.get('Authorization');
 
-    console.log('Updating user with ID:', id);
-    console.log('Request body:', body);
-    console.log('Token:', token ? 'Present' : 'Missing');
-
     const res = await fetch(`https://backend-7tnx.vercel.app/api/users/${id}`, {
       method: 'PUT',
       headers: {
@@ -58,11 +50,8 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     });
 
     const data = await res.json();
-    console.log('Backend response status:', res.status);
-    console.log('Backend response data:', data);
 
     if (!res.ok) {
-      console.error('Backend error:', data);
       return NextResponse.json(
         { 
           error: 'ไม่สามารถอัปเดตผู้ใช้ได้', 
@@ -90,10 +79,13 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
 export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
-    const res = await fetch(`https://backend-vert-eight-76.vercel.app/api/users/${id}`, {
+    const token = request.headers.get('Authorization');
+
+    const res = await fetch(`https://backend-7tnx.vercel.app/api/users/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': token || '',
       },
     });
 

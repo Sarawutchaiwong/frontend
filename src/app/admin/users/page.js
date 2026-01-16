@@ -28,15 +28,15 @@ export default function User() {
         });
         if (!res.ok) {
           console.error('Failed to fetch data');
-    
+          setLoading(false);
           return;
         }
         const data = await res.json();
         setItems(data);
-    
       } catch (error) {
         console.error('Error fetching data:', error);
- 
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -112,37 +112,51 @@ export default function User() {
             </tr>
           </thead>
           <tbody>
-            {filteredItems.map((item) => (
-              <tr key={item.id}>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <Image 
-                      src={item.avatar || '/images/roblox2.png'} 
-                      alt={`${item.firstname} ${item.lastname}`} 
-                      width={45} 
-                      height={45} 
-                      className={styles.userAvatar}
-                    />
-                    <div>
-                      <div className="fw-bold">{`${item.firstname} ${item.lastname}`}</div>
-                    </div>
+            {loading ? (
+              <tr>
+                <td colSpan="3" className="text-center">
+                  <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
                   </div>
                 </td>
-                <td>{item.username}</td>
-                <td className="text-center">
-                  <Link href={`/admin/users/edit/${item.id}`} className="btn btn-sm btn-outline-primary me-2">
-                    Edit
-                  </Link>
-                  <button
-                    className="btn btn-sm btn-outline-danger"
-                    type="button"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
               </tr>
-            ))}
+            ) : filteredItems.length > 0 ? (
+              filteredItems.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <div className="d-flex align-items-center">
+                      <Image 
+                        src={item.avatar || '/images/roblox2.png'} 
+                        alt={`${item.firstname} ${item.lastname}`} 
+                        width={45} 
+                        height={45} 
+                        className={styles.userAvatar}
+                      />
+                      <div>
+                        <div className="fw-bold">{`${item.firstname} ${item.lastname}`}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{item.username}</td>
+                  <td className="text-center">
+                    <Link href={`/admin/users/edit/${item.id}`} className="btn btn-sm btn-outline-primary me-2">
+                      Edit
+                    </Link>
+                    <button
+                      className="btn btn-sm btn-outline-danger"
+                      type="button"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="3" className="text-center">No users found.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

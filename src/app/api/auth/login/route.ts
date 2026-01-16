@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
     if (!res.ok) {
       return NextResponse.json(
-        { error: 'การเข้าสู่ระบบไม่สำเร็จ' },
+        { error: 'การเข้าสู่ระบบไม่สำเร็จ', message: data.message },
         { status: res.status }
       );
     }

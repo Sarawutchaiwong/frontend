@@ -1,11 +1,20 @@
- import { NextResponse } from 'next/server';
+ import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const res = await fetch('https://backend-7tnx.vercel.app/api/users', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    // Forward only the Authorization header
+    const token = request.headers.get('Authorization');
+    const headers = new Headers();
+    if (token) {
+      headers.append('Authorization', token);
+    }
+    headers.append('Content-Type', 'application/json');
+
+    const res = await fetch(`https://backend-7tnx.vercel.app/api/users${id ? `/${id}` : ''}`, {
+      headers: headers,
       next: { revalidate: 0 },
     });
 
@@ -14,7 +23,16 @@ export async function GET() {
     }
 
     const data = await res.json();
-    return NextResponse.json(data);
+    
+    if (Array.isArray(data)) {
+      return NextResponse.json(data);
+    }
+
+    if (data && Array.isArray(data.data)) {
+      return NextResponse.json(data.data);
+    }
+
+    return NextResponse.json([]);
     
   } catch (error) {
     console.error('Error fetching users:', error);

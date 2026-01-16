@@ -70,7 +70,7 @@ export default function Login() {
         Swal.fire({
           icon: 'error',
           title: '<h3>Invalid Credentials</h3>',
-          text: 'Please check your username and password',
+          text: data.message || 'Please check your username and password',
           showConfirmButton: true
         });
       }
