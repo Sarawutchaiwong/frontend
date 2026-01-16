@@ -9,7 +9,6 @@ export default function Register() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
-    fullName: '',
     firstName: '',
     lastName: '',
     username: '',
@@ -24,18 +23,17 @@ export default function Register() {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.fullName) newErrors.fullName = 'ชื่อ-นามสกุล is required';
-    if (!formData.firstName) newErrors.firstName = 'ชื่อจริง is required';
-    if (!formData.lastName) newErrors.lastName = 'นามสกุล is required';
-    if (!formData.username) newErrors.username = 'ชื่อเล่น is required';
+    if (!formData.firstName) newErrors.firstName = 'กรุณากรอกชื่อจริง';
+    if (!formData.lastName) newErrors.lastName = 'กรุณากรอกนามสกุล';
+    if (!formData.username) newErrors.username = 'กรุณากรอกชื่อเล่น';
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'กรุณากรอกรหัสผ่าน';
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร';
     } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(formData.password)) {
-      newErrors.password = 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+      newErrors.password = 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร, มีตัวพิมพ์ใหญ่อย่างน้อย 1 ตัว, ตัวพิมพ์เล็ก 1 ตัว และตัวเลข 1 ตัว';
     }
-    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'รหัสผ่านไม่ตรงกัน';
 
     return newErrors;
   };
@@ -66,7 +64,7 @@ export default function Register() {
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          fullName: formData.fullName,
+          fullName: `${formData.firstName} ${formData.lastName}`,
           firstName: formData.firstName,
           lastName: formData.lastName,
           username: formData.username,
@@ -88,7 +86,7 @@ export default function Register() {
         });
       } else {
         Swal.fire({
-          title: 'Error!',
+          title: 'เกิดข้อผิดพลาด!',
           text: result.message || 'เกิดข้อผิดพลาด!',
           icon: 'error',
           confirmButtonText: 'ตกลง',
@@ -121,7 +119,7 @@ export default function Register() {
               {/* Header Section */}
               <div className={styles['register-header']}>
               
-                <h1 className={styles['register-title']}>Register</h1>
+                <h1 className={styles['register-title']}>สมัครสมาชิก</h1>
               </div>
 
               <form onSubmit={handleSubmit}>
@@ -129,24 +127,10 @@ export default function Register() {
                 <div className={styles['form-section']}>
                   <h3 className={styles['section-title']}>
                     <i className="bi bi-shield-lock"></i>
-                    Account Security
+                    ข้อมูลส่วนตัว
                   </h3>
                   
                   <div className="row">
-                  <div className="col-md-12">
-                      <div className={styles['form-group']}>
-                        <label htmlFor="fullname" className={styles['form-label']}>ชื่อ-นามสกุล</label>
-                        <input
-                          type="text"
-                          className={`${styles['form-control']} ${errors.fullName ? styles['is-invalid'] : ''}`}
-                          name="fullName"
-                          value={formData.fullName}
-                          onChange={handleChange}
-                          id="fullname"
-                        />
-                        {errors.fullName && <div className={styles['invalid-feedback']}>{errors.fullName}</div>}
-                      </div>
-                    </div>
                     <div className="col-md-6">
                       <div className={styles['form-group']}>
                         <label htmlFor="firstname" className={styles['form-label']}>ชื่อจริง</label>
@@ -191,7 +175,7 @@ export default function Register() {
                     </div>
                     <div className="col-md-6">
                       <div className={styles['form-group']}>
-                        <label htmlFor="inputPassword" className={styles['form-label']}>Password</label>
+                        <label htmlFor="inputPassword" className={styles['form-label']}>รหัสผ่าน</label>
                         <div className="input-group">
                           <input
                             type={showPassword ? 'text' : 'password'}
@@ -215,7 +199,7 @@ export default function Register() {
 
                     <div className="col-md-6">
                       <div className={styles['form-group']}>
-                        <label htmlFor="confirmPassword" className={styles['form-label']}>Confirm Password</label>
+                        <label htmlFor="confirmPassword" className={styles['form-label']}>ยืนยันรหัสผ่าน</label>
                         <div className="input-group">
                           <input
                             type={showConfirmPassword ? 'text' : 'password'}
@@ -249,12 +233,12 @@ export default function Register() {
                     {isSubmitting ? (
                       <>
                         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Creating Account...
+                        กำลังสร้างบัญชี...
                       </>
                     ) : (
                       <>
                         <i className="bi bi-person-plus me-2"></i>
-                        Create Account
+                        สร้างบัญชี
                       </>
                     )}
                   </button>
@@ -263,9 +247,9 @@ export default function Register() {
 
               {/* Login Link */}
               <div className={styles['login-text']}>
-                Already have an account? 
+                มีบัญชีอยู่แล้ว? 
                 <Link href="/login" className={styles['login-link']}>
-                  Login here
+                  เข้าสู่ระบบที่นี่
                 </Link>
               </div>
 

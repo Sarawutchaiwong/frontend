@@ -16,7 +16,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-feather": "^2.0.10",
-    "sweetalert2": "^11.22.2"
+    "sweetalert2": "^11.26.17"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -59,6 +59,7 @@ export async function POST(request: Request) {
     const data = await res.json();
 
     if (!res.ok) {
+      console.error('Backend error:', data);
       return NextResponse.json(
         { error: 'ไม่สามารถสมัครสมาชิกได้', message: data.message },
         { status: res.status }

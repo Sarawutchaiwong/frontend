@@ -105,7 +105,7 @@ export default function Login() {
           <div className="col-md-6 col-lg-5">
             <div className={styles['login-card']}>
               <div className={styles['login-header']}>
-                <h1 className={styles['login-title']}>Login</h1>
+                <h1 className={styles['login-title']}>เข้าสู่ระบบ</h1>
               </div>
 
               <form className={styles['login-form']} onSubmit={handleSubmit} noValidate>
