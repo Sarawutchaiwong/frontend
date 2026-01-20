@@ -82,6 +82,7 @@ export default function User() {
 
   const filteredItems = items.filter(
     (item) =>
+      (item.fullname && item.fullname.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (item.firstname && item.firstname.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (item.lastname && item.lastname.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (item.username && item.username.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -127,13 +128,13 @@ export default function User() {
                     <div className="d-flex align-items-center">
                       <Image 
                         src={item.avatar || '/images/roblox2.png'} 
-                        alt={`${item.firstname} ${item.lastname}`} 
+                        alt={item.fullname || `${item.firstname} ${item.lastname}` || 'User'} 
                         width={45} 
                         height={45} 
                         className={styles.userAvatar}
                       />
                       <div>
-                        <div className="fw-bold">{`${item.firstname} ${item.lastname}`}</div>
+                        <div className="fw-bold">{item.fullname || `${item.firstname || ''} ${item.lastname || ''}`}</div>
                       </div>
                     </div>
                   </td>

@@ -173,6 +173,30 @@
   margin-bottom: 1.5rem;
 }
 
+.form-group-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group-checkbox .form-check-input {
+  margin-right: 0.75rem;
+}
+
+.form-group-checkbox .form-check-label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-group-checkbox a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.form-group-checkbox a:hover {
+  text-decoration: underline;
+}
+
 .form-label {
   display: block;
   color: #333;

@@ -23,6 +23,7 @@ export async function GET(request: NextRequest) {
     }
 
     const data = await res.json();
+    console.log('Data from backend:', JSON.stringify(data, null, 2));
     
     if (Array.isArray(data)) {
       return NextResponse.json(data);

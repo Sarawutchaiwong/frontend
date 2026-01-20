@@ -1,9 +1,9 @@
 'use client'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link'
-import Swal from 'sweetalert2'
-import styles from './login.module.css'
+import Link from 'next/link';
+import Swal from 'sweetalert2';
+import styles from './login.module.css';
 
 export default function Login() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function Login() {
     if (!password) {
       tempErrors.password = 'Password is required';
       isValid = false;
-    } else if (password.length < 4) {
+    } else if (password.length < 6) {
       tempErrors.password = 'Password must be at least 6 characters';
       isValid = false;
     }
@@ -62,16 +62,16 @@ export default function Login() {
           icon: 'success',
           title: '<h3>Login Successfully!</h3>',
           showConfirmButton: false,
-          timer: 2000
+          timer: 2000,
         }).then(() => {
-          window.location.href = "/admin/users";
+          window.location.href = '/admin/users';
         });
       } else {
         Swal.fire({
           icon: 'error',
           title: '<h3>Invalid Credentials</h3>',
           text: data.message || 'Please check your username and password',
-          showConfirmButton: true
+          showConfirmButton: true,
         });
       }
     } catch (error) {
@@ -79,7 +79,7 @@ export default function Login() {
         icon: 'error',
         title: '<h3>Login Failed</h3>',
         text: 'An error occurred during login',
-        showConfirmButton: true
+        showConfirmButton: true,
       });
     } finally {
       setIsSubmitting(false);
@@ -89,11 +89,10 @@ export default function Login() {
   const handleInputChange = (e, setter) => {
     const { name, value } = e.target;
     setter(value);
-    // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: '',
       }));
     }
   };
@@ -139,6 +138,7 @@ export default function Login() {
                     />
                   </div>
                   {errors.password && <div className={styles['error-message']}>{errors.password}</div>}
+
                   <div className={styles['forgot-password']}>
                     <Link href="/forgot-password" className={styles['forgot-link']}>
                       <i className="bi bi-question-circle"></i>
@@ -147,8 +147,8 @@ export default function Login() {
                   </div>
                 </div>
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className={styles['login-button']}
                   disabled={isSubmitting}
                 >
@@ -166,10 +166,9 @@ export default function Login() {
                 </button>
               </form>
 
-              {/* Footer Section */}
               <div className={styles['login-footer']}>
                 <p className={styles['register-text']}>
-                  Dont have an account? 
+                  Don’t have an account?{' '}
                   <Link href="/register" className={styles['register-link']}>
                     <i className="bi bi-person-plus"></i>
                     Register here
@@ -177,8 +176,6 @@ export default function Login() {
                 </p>
               </div>
 
-              {/* Decorative Elements */}
-              
             </div>
           </div>
         </div>

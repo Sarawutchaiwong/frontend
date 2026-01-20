@@ -9,11 +9,13 @@ export default function Register() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
-    firstName: '',
+    title: '',
+    fullName: '',
     lastName: '',
     username: '',
     password: '',
     confirmPassword: '',
+    agreedToTerms: false,
   });
 
   const [errors, setErrors] = useState({});
@@ -23,7 +25,8 @@ export default function Register() {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.firstName) newErrors.firstName = 'กรุณากรอกชื่อจริง';
+    if (!formData.title) newErrors.title = 'กรุณาเลือกคำนำหน้า';
+    if (!formData.fullName) newErrors.fullName = 'กรุณากรอกชื่อ';
     if (!formData.lastName) newErrors.lastName = 'กรุณากรอกนามสกุล';
     if (!formData.username) newErrors.username = 'กรุณากรอกชื่อเล่น';
     if (!formData.password) {
@@ -34,15 +37,16 @@ export default function Register() {
       newErrors.password = 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร, มีตัวพิมพ์ใหญ่อย่างน้อย 1 ตัว, ตัวพิมพ์เล็ก 1 ตัว และตัวเลข 1 ตัว';
     }
     if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'รหัสผ่านไม่ตรงกัน';
+    if (!formData.agreedToTerms) newErrors.agreedToTerms = 'คุณต้องยอมรับข้อตกลงและเงื่อนไข';
 
     return newErrors;
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     });
   };
 
@@ -64,9 +68,9 @@ export default function Register() {
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          fullName: `${formData.firstName} ${formData.lastName}`,
-          firstName: formData.firstName,
-          lastName: formData.lastName,
+          firstname: formData.title,
+          fullname: formData.fullName,
+          lastname: formData.lastName,
           username: formData.username,
           password: formData.password,
         }),
@@ -131,21 +135,39 @@ export default function Register() {
                   </h3>
                   
                   <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                       <div className={styles['form-group']}>
-                        <label htmlFor="firstname" className={styles['form-label']}>ชื่อจริง</label>
-                        <input
-                          type="text"
-                          className={`${styles['form-control']} ${errors.firstName ? styles['is-invalid'] : ''}`}
-                          name="firstName"
-                          value={formData.firstName}
+                        <label htmlFor="title" className={styles['form-label']}>คำนำหน้า</label>
+                        <select
+                          className={`${styles['form-control']} ${errors.title ? styles['is-invalid'] : ''}`}
+                          name="title"
+                          value={formData.title}
                           onChange={handleChange}
-                          id="firstname"
-                        />
-                        {errors.firstName && <div className={styles['invalid-feedback']}>{errors.firstName}</div>}
+                          id="title"
+                        >
+                          <option value="">เลือกคำนำหน้า</option>
+                          <option value="นาย">นาย</option>
+                          <option value="นาง">นาง</option>
+                          <option value="นางสาว">นางสาว</option>
+                        </select>
+                        {errors.title && <div className={styles['invalid-feedback']}>{errors.title}</div>}
                       </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-4">
+                      <div className={styles['form-group']}>
+                        <label htmlFor="fullName" className={styles['form-label']}>ชื่อ</label>
+                        <input
+                          type="text"
+                          className={`${styles['form-control']} ${errors.fullName ? styles['is-invalid'] : ''}`}
+                          name="fullName"
+                          value={formData.fullName}
+                          onChange={handleChange}
+                          id="fullName"
+                        />
+                        {errors.fullName && <div className={styles['invalid-feedback']}>{errors.fullName}</div>}
+                      </div>
+                    </div>
+                    <div className="col-md-4">
                       
                       <div className={styles['form-group']}>
                         <label htmlFor="lastname" className={styles['form-label']}>นามสกุล</label>
@@ -221,6 +243,24 @@ export default function Register() {
                         {errors.confirmPassword && <div className={styles['invalid-feedback']}>{errors.confirmPassword}</div>}
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                {/* Terms and Conditions Section */}
+                <div className={styles['form-section']}>
+                  <div className={styles['form-group-checkbox']}>
+                    <input
+                      type="checkbox"
+                      className={`${styles['form-check-input']} ${errors.agreedToTerms ? styles['is-invalid'] : ''}`}
+                      name="agreedToTerms"
+                      checked={formData.agreedToTerms}
+                      onChange={handleChange}
+                      id="agreedToTerms"
+                    />
+                    <label htmlFor="agreedToTerms" className={styles['form-check-label']}>
+                      I agree to the <a href="/terms" target="_blank">Terms and Conditions</a>
+                    </label>
+                    {errors.agreedToTerms && <div className={styles['invalid-feedback']}>{errors.agreedToTerms}</div>}
                   </div>
                 </div>
 

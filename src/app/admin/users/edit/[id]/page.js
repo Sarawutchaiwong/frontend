@@ -34,11 +34,12 @@ export default function Page() {
               return;
             }
             const data = await res.json();
-            setItems(Array.isArray(data) ? data : [data]);
+            const userArray = Array.isArray(data) ? data : (data ? [data] : []);
+            setItems(userArray);
 
         //กำหนดค่า state เริ่มต้นจาก API
-        if (data.length > 0) {
-          const user = data[0];
+        if (userArray.length > 0) {
+          const user = userArray[0];
           setFirstname(user.firstname || '');
           setFullname(user.fullname || '');
           setLastname(user.lastname || '');
@@ -123,92 +124,95 @@ export default function Page() {
                     <span className="visually-hidden">Loading...</span>
                   </div>
                 </div>
-              ) : items && items.length > 0 ? (
-                items.map((item) => (
-                  <form key={item.id} onSubmit={handleUpdateSubmit} className="row g-4">
-                    <div className="col-md-6">
-                      <label className="form-label text-dark fw-semibold">Firstname</label>
-                      <select 
-                        name="firstname" 
-                        onChange={(e) => setFirstname(e.target.value)} 
-                        className="form-select bg-white text-dark border-secondary shadow-sm" 
-                        required
-                      >
-                        <option value={item.firstname}>{item.firstname}</option>
-                        <option value="นาย">นาย</option>
-                        <option value="นาง">นาง</option>
-                        <option value="นางสาว">นางสาว</option>
-                      </select>
-                    </div>
-
-                    <div className="col-md-6">
-                      <label className="form-label text-dark fw-semibold">Fullname</label>
-                      <input
-                        type="text"
-                        placeholder="กรอกชื่อ"
-                        defaultValue={item.fullname}
-                        onChange={(e) => setFullname(e.target.value)}
-                        className="form-control bg-white text-dark border-secondary shadow-sm"
-                        required
-                      />
-                    </div>
-
-                    <div className="col-md-6">
-                      <label className="form-label text-dark fw-semibold">Lastname</label>
-                      <input
-                        type="text"
-                        placeholder="กรอกนามสกุล"
-                        defaultValue={item.lastname}
-                        onChange={(e) => setLastname(e.target.value)}
-                        className="form-control bg-white text-dark border-secondary shadow-sm"
-                        required
-                      />
-                    </div>
-
-                    <div className="col-md-6">
-                      <label className="form-label text-dark fw-semibold">Username</label>
-                      <input
-                        type="text"
-                        placeholder="กรอกชื่อผู้ใช้"
-                        defaultValue={item.username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        className="form-control bg-white text-dark border-secondary shadow-sm"
-                        required
-                      />
-                    </div>
-
-                    <div className="col-12">
-                      <label className="form-label text-dark fw-semibold">Password</label>
-                      <input
-                        type="password"
-                        placeholder="กรอกรหัสผ่าน"
-                        defaultValue={item.password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="form-control bg-white text-dark border-secondary shadow-sm"
-                        required
-                      />
-                    </div>
-
-                    <div className="col-12 mt-5">
-                      <div className="d-flex gap-3 justify-content-center">
-                        <button
-                          type="button"
-                          className="btn btn-light px-4 py-2 shadow-sm"
-                          onClick={() => router.push('/admin/users')}
+          ) : items && items.length > 0 ? (
+                (() => {
+                  const item = items[0];
+                  return (
+                    <form onSubmit={handleUpdateSubmit} className="row g-4">
+                      <div className="col-md-6">
+                        <label className="form-label text-dark fw-semibold">Firstname</label>
+                        <select 
+                          name="firstname" 
+                          onChange={(e) => setFirstname(e.target.value)} 
+                          className="form-select bg-white text-dark border-secondary shadow-sm" 
+                          required
                         >
-                          cancel
-                        </button>
-                        <button
-                          type="submit"
-                          className="btn btn-primary px-4 py-2 shadow-sm"
-                        >
-                          save change
-                        </button>
+                          <option value={item.firstname || ''}>{item.firstname || 'Select Firstname'}</option>
+                          <option value="นาย">นาย</option>
+                          <option value="นาง">นาง</option>
+                          <option value="นางสาว">นางสาว</option>
+                        </select>
                       </div>
-                    </div>
-                  </form>
-                ))
-              ) : (
+
+                      <div className="col-md-6">
+                        <label className="form-label text-dark fw-semibold">Fullname</label>
+                        <input
+                          type="text"
+                          placeholder="กรอกชื่อ"
+                          defaultValue={item.fullname || ''}
+                          onChange={(e) => setFullname(e.target.value)}
+                          className="form-control bg-white text-dark border-secondary shadow-sm"
+                          required
+                        />
+                      </div>
+
+                      <div className="col-md-6">
+                        <label className="form-label text-dark fw-semibold">Lastname</label>
+                        <input
+                          type="text"
+                          placeholder="กรอกนามสกุล"
+                          defaultValue={item.lastname || ''}
+                          onChange={(e) => setLastname(e.target.value)}
+                          className="form-control bg-white text-dark border-secondary shadow-sm"
+                          required
+                        />
+                      </div>
+
+                      <div className="col-md-6">
+                        <label className="form-label text-dark fw-semibold">Username</label>
+                        <input
+                          type="text"
+                          placeholder="กรอกชื่อผู้ใช้"
+                          defaultValue={item.username || ''}
+                          onChange={(e) => setUsername(e.target.value)}
+                          className="form-control bg-white text-dark border-secondary shadow-sm"
+                          required
+                        />
+                      </div>
+
+                      <div className="col-12">
+                        <label className="form-label text-dark fw-semibold">Password</label>
+                        <input
+                          type="password"
+                          placeholder="กรอกรหัสผ่าน"
+                          defaultValue={item.password || ''}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className="form-control bg-white text-dark border-secondary shadow-sm"
+                          required
+                        />
+                      </div>
+
+                      <div className="col-12 mt-5">
+                        <div className="d-flex gap-3 justify-content-center">
+                          <button
+                            type="button"
+                            className="btn btn-light px-4 py-2 shadow-sm"
+                            onClick={() => router.push('/admin/users')}
+                          >
+                            cancel
+                          </button>
+                          <button
+                            type="submit"
+                            className="btn btn-primary px-4 py-2 shadow-sm"
+                          >
+                            save change
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  );
+                })()
+          ) : (
                 <div className="text-center">
                   <p>User not found.</p>
                 </div>
